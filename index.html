@@ -54,6 +54,7 @@
             align-items: center;
             justify-content: center;
             gap: 40px;
+            flex-wrap: wrap; /* Permite que os itens quebrem em uma nova linha */
         }
 
         .text-content {
@@ -89,6 +90,56 @@
             text-align: center;
             font-size: 14px;
             color: #777;
+        }
+
+        /* Responsividade para telas pequenas (mobile) */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column; /* Empilha os links verticalmente */
+                gap: 20px;
+            }
+
+            .content {
+                flex-direction: column; /* Empilha a imagem e o texto verticalmente */
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .text-content h1 {
+                font-size: 36px; /* Menor título para telas pequenas */
+            }
+
+            .text-content h3 {
+                font-size: 14px; /* Menor subtítulo para telas pequenas */
+            }
+
+            .text-content p {
+                font-size: 16px; /* Reduz o tamanho do texto */
+            }
+
+            .image-content img {
+                max-width: 100%; /* Faz a imagem ocupar toda a largura disponível */
+                height: auto; /* Mantém a proporção da imagem */
+            }
+        }
+
+        /* Responsividade para telas muito pequenas (por exemplo, smartphones em modo retrato) */
+        @media (max-width: 480px) {
+            body {
+                padding: 20px; /* Menos espaço nas bordas */
+            }
+
+            .text-content h1 {
+                font-size: 28px; /* Menor título para telas muito pequenas */
+            }
+
+            .text-content h3 {
+                font-size: 12px; /* Menor subtítulo para telas muito pequenas */
+            }
+
+            .text-content p {
+                font-size: 14px; /* Reduz ainda mais o texto */
+            }
         }
     </style>
 </head>
