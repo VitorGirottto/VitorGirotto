@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laços de Repetição em PHP - Vitor Girotto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fdfcfc;
+            color: #333;
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            position: relative;
+        }
+
+        nav a:hover::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #4e73df;
+            transition: 0.3s;
+        }
+
+        .content {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .code-block {
+            background-color: #1f1f1f;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 0.9;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: rgb(19, 18, 18);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Sobre</a>
+            <a href="../assuntos.html">Assuntos</a>
+            <a href="../contato.html">Contato</a>
+        </nav>
+        <br></br>
+        <h1>Laços de Repetição em PHP</h1>
+    </header>
+
+    <section class="content">
+        <p>Em PHP, os laços de repetição são estruturas de controle que permitem executar um bloco de código várias vezes de acordo com uma condição. Vamos aprender sobre os diferentes tipos de laços de repetição e quando utilizá-los.</p>
+        <br></br>
+
+        <h2>Laço <code>while</code></h2>
+        <p>O laço <code>while</code> executa um bloco de código enquanto uma condição for verdadeira. A verificação da condição ocorre antes de cada iteração. Isso é útil quando não sabemos quantas vezes o bloco será executado.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.while-example')">Copiar</button>
+            <p><code>$numero = 1;</code></p>
+            <p><code>while ($numero <= 5) {</code></p>
+            <p><code>    echo "Contagem: $numero\n";</code></p>
+            <p><code>    $numero++;</code></p>
+            <p><code>}</code></p>
+        </div>
+
+        <p>O código acima irá imprimir a contagem de 1 até 5:</p>
+        <div class="code-block">
+            <p>Contagem: 1</p>
+            <p>Contagem: 2</p>
+            <p>Contagem: 3</p>
+            <p>Contagem: 4</p>
+            <p>Contagem: 5</p>
+        </div>
+        <br></br>
+
+        <h3>Uso com arrays</h3>
+        <p>Um exemplo de uso do laço <code>while</code> para percorrer um array:</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.while-array-example')">Copiar</button>
+            <p><code>$frutas = ["Maçã", "Banana", "Laranja"];</code></p>
+            <p><code>$indice = 0;</code></p>
+            <p><code>while ($indice < count($frutas)) {</code></p>
+            <p><code>    echo "Fruta: $frutas[$indice]\n";</code></p>
+            <p><code>    $indice++;</code></p>
+            <p><code>}</code></p>
+        </div>
+
+        <p>Este código imprime cada fruta no array:</p>
+        <div class="code-block">
+            <p>Fruta: Maçã</p>
+            <p>Fruta: Banana</p>
+            <p>Fruta: Laranja</p>
+        </div>
+        <br></br>
+
+        <h2>Laço <code>do...while</code></h2>
+        <p>O laço <code>do...while</code> funciona de forma semelhante ao <code>while</code>, mas com a diferença de que a condição é verificada após a execução do bloco. Isso garante que o bloco será executado pelo menos uma vez, independentemente da condição.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.do-while-example')">Copiar</button>
+            <p><code>$numero = 1;</code></p>
+            <p><code>do {</code></p>
+            <p><code>    echo "Contagem: $numero\n";</code></p>
+            <p><code>    $numero++;</code></p>
+            <p><code>} while ($numero <= 5);</code></p>
+        </div>
+
+        <p>Este código imprimirá a contagem de 1 até 5, mas mesmo que a condição fosse falsa no início, o bloco ainda seria executado uma vez.</p>
+        <br></br>
+
+        <h2>Laço <code>for</code></h2>
+        <p>O laço <code>for</code> é ideal quando se sabe exatamente quantas vezes o bloco de código precisa ser repetido. Ele possui três partes: inicialização, condição e incremento.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.for-example')">Copiar</button>
+            <p><code>for ($i = 1; $i <= 5; $i++) {</code></p>
+            <p><code>    echo "Contagem: $i\n";</code></p>
+            <p><code>}</code></p>
+        </div>
+
+        <p>Esse código é semelhante ao <code>while</code>, mas é mais compacto. Ele irá imprimir a contagem de 1 até 5.</p>
+        <br></br>
+
+        <h3>Laço <code>for</code> com arrays</h3>
+        <p>Outro exemplo de uso do laço <code>for</code> com arrays:</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.for-array-example')">Copiar</button>
+            <p><code>$frutas = ["Maçã", "Banana", "Laranja"];</code></p>
+            <p><code>for ($i = 0; $i < count($frutas); $i++) {</code></p>
+            <p><code>    echo "Fruta: $frutas[$i]\n";</code></p>
+            <p><code>}</code></p>
+        </div>
+
+        <p>Este código imprime as frutas usando o laço <code>for</code>:</p>
+        <div class="code-block">
+            <p>Fruta: Maçã</p>
+            <p>Fruta: Banana</p>
+            <p>Fruta: Laranja</p>
+        </div>
+        <br></br>
+
+        <h2>Laço <code>foreach</code></h2>
+        <p>O <code>foreach</code> é ideal para percorrer arrays. Ele facilita o acesso a cada elemento de um array sem precisar controlar o índice manualmente.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.foreach-example')">Copiar</button>
+            <p><code>$frutas = ["Maçã", "Banana", "Laranja"];</code></p>
+            <p><code>foreach ($frutas as $fruta) {</code></p>
+            <p><code>    echo "Fruta: $fruta\n";</code></p>
+            <p><code>}</code></p>
+        </div>
+
+        <p>O código acima irá imprimir:</p>
+        <div class="code-block">
+            <p>Fruta: Maçã</p>
+            <p>Fruta: Banana</p>
+            <p>Fruta: Laranja</p>
+        </div>
+        <br></br>
+
+        <h2>Boas Práticas</h2>
+        <ul>
+            <li><strong>Evite laços infinitos:</strong> Certifique-se de que a condição de término do laço seja atingida.</li>
+            <li><strong>Use <code>foreach</code> quando possível:</strong> Para percorrer arrays, o <code>foreach</code> é mais simples e direto.</li>
+            <li><strong>Laços aninhados:</strong> Evite usar muitos laços dentro de outros, pois pode tornar o código difícil de entender e manter.</li>
+            <li><strong>Evite mudanças de índice dentro do laço:</strong> Modificar o índice de controle dentro de laços pode levar a comportamentos inesperados.</li>
+        </ul>
+
+        <br></br>
+      
+    </section>
+
+    <script>
+        function copyToClipboard(selector) {
+            const codeBlock = document.querySelector(selector);
+            const text = codeBlock.innerText || codeBlock.textContent;
+            
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('Código copiado!');
+        }
+    </script>
+</body>
+</html>
