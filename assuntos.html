@@ -23,12 +23,15 @@
             display: flex;
             justify-content: center;
             margin-bottom: 50px;
+            flex-direction: column;
+            align-items: center;
         }
 
         nav {
             display: flex;
             gap: 40px;
             font-weight: bold;
+            margin-bottom: 20px;
         }
 
         nav a {
@@ -49,7 +52,46 @@
             transition: 0.3s;
         }
 
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    border-radius: 100px;  /* Bordas mais arredondadas */
+    border: 1px solid #ccc;
+}
+
         .content {
+            text-align: center;
+        }
+
+        .topics {
+            display: flex;
+            flex-direction: column;  /* Mudando para colunas */
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .topic {
+            color: #4e73df;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .topic:hover {
+            color: #2a5298;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+            max-width: 600px;
             text-align: center;
         }
 
@@ -68,15 +110,48 @@
             <a href="assuntos.html">Assuntos</a>
             <a href="contato.html">Contato</a>
         </nav>
+
+        <!-- Barra de pesquisa -->
+        <div class="search-bar">
+            <input type="text" placeholder="Procurrar" id="searchInput">
+        </div>
     </header>
 
     <section class="content">
-        <h1>Assuntos</h1>
-        <p>Aqui você encontrará uma variedade de tópicos relacionados ao desenvolvimento de sistemas, suporte técnico e inovações tecnológicas. Aprofunde-se e explore os meus interesses!</p>
+       
+        <!-- Lista de tópicos -->
+        <div class="topics" id="topicsContainer">
+            <div class="topic-item">
+                <a href="assuntos/comentarios.html" class="topic">Comentários</a>
+                <p class="description">Entenda a forma e maneiras que podemos cometar em códigos PHP.</p>
+            </div>
+        </div>
     </section>
 
     <footer>
         <p>&copy; 2025 Vitor Girotto - Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        // Função de pesquisa
+        const searchInput = document.getElementById('searchInput');
+        const topicsContainer = document.getElementById('topicsContainer');
+        const topicItems = topicsContainer.getElementsByClassName('topic-item');
+
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            
+            for (let item of topicItems) {
+                const topicText = item.getElementsByClassName('topic')[0].textContent.toLowerCase();
+                const descriptionText = item.getElementsByClassName('description')[0].textContent.toLowerCase();
+                
+                if (topicText.includes(query) || descriptionText.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
