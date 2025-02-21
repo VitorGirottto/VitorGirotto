@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentários em PHP - Vitor Girotto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fdfcfc;
+            color: #333;
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            position: relative;
+        }
+
+        nav a:hover::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #4e73df;
+            transition: 0.3s;
+        }
+
+        .content {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .code-block {
+            background-color: #070606;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 0.7;
+            color: #ffffff;
+
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Sobre</a>
+            <a href="../assuntos.html">Assuntos</a>
+            <a href="../contato.html">Contato</a>
+        </nav>
+        <br></br>
+        <h1>Comentários em PHP</h1>
+    </header>
+
+    <section class="content">
+        <p>Em PHP, você pode adicionar observações ou comentários ao seu código de várias maneiras. Os comentários são essenciais para documentar o que o código faz, facilitar a leitura e manter a manutenção futura. Vamos explorar as diferentes formas de adicionar comentários em PHP.</p>
+        <br></br>
+        <h2>Comentários de Linha Única</h2>
+        <p>Você pode usar <code>//</code> ou <code>#</code> para adicionar comentários que ocupam apenas uma linha.</p>
+        
+        <div class="code-block">
+            <p>// Este é um comentário de linha única</p>
+            <p># Este também é um comentário de linha única</p>
+            <p>echo "Olá, mundo!"; // Este comentário está ao lado de um código</p>
+        </div>
+        <br></br>
+        <h2>Comentários de Múltiplas Linhas</h2>
+        <p>Para comentários que ocupam várias linhas, você pode usar <code>/* comentário */</code>. Isso é útil para descrever blocos de código ou funções complexas.</p>
+
+        <div class="code-block">
+            <p>/*</p>
+            <p>Este é um comentário</p>
+            <p>que ocupa várias linhas.</p>
+            <p>*/</p>
+            <p>echo "Olá, mundo!";</p>
+        </div>
+        <br></br>
+        <h2>Comentários em DocBlocks</h2>
+        <p>Os DocBlocks são utilizados para documentar funções, classes ou métodos. Eles geralmente começam com <code>/**</code> e são utilizados por ferramentas de documentação como PHPDoc.</p>
+
+        <div class="code-block">
+            <p>/**</p>
+            <p> * Soma dois números.</p>
+            <p> * </p>
+            <p> *  int $a O primeiro número.</p>
+            <p> *  int $b O segundo número.</p>
+            <p> *  int A soma dos dois números.</p>
+            <p> */</p>
+            <p>function somar($a, $b) {</p>
+            <p>    return $a + $b;</p>
+            <p>}</p>
+        </div>
+        <br></br>
+        <h2>Boas Práticas</h2>
+        <ul>
+            <li><strong>Seja Claro e Conciso:</strong> Tente explicar o que o código faz de forma clara, mas evite comentários excessivamente longos.</li>
+            <li><strong>Atualize os Comentários:</strong> Sempre mantenha os comentários atualizados conforme você modifica o código.</li>
+            <li><strong>Evite Comentários Óbvios:</strong> Não comente coisas que são autoexplicativas, como <code>echo "Olá, mundo!"; // Exibe "Olá, mundo!".</code></li>
+        </ul>
+
+        <p>Os comentários são uma parte fundamental do desenvolvimento de software, ajudando outros desenvolvedores (ou você mesmo no futuro) a entenderem o que o código faz e por que foi escrito daquela maneira.</p>
+
+        <p><em>Com o decorrer do livro vou usar esses comentários até mesmo para explicar os códigos que vou mostrar, sendo representados pela cor verde. Caso veja frases com a cor verde, saiba que são explicações e não alteram o código em questão. Se você não entendeu os códigos mostrados acima, não se preocupe, o importante nesse capítulo é entender as formas de comentários em PHP.</em></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Vitor Girotto - Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
