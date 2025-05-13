@@ -1,133 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitor Girotto</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #f8f8f8;
-            color: #333;
-            line-height: 1.6;
-            padding: 40px;
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: linear-gradient(to bottom, #0b0e21, #151a35);
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        header {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 50px;
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
 
-        nav {
-            display: flex;
-            gap: 40px;
-            font-weight: bold;
-        }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 16px;
+    }
 
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            position: relative;
-        }
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+    }
 
-        nav a:hover::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #4e73df;
-            transition: 0.3s;
-        }
+    .main-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 50px 50px;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
-        .content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
+    .php-effect {
+      font-size: 100px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #2caefe, #ff00cc, #00ffe1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulse 3s infinite;
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
 
-        .text-content {
-            max-width: 600px;
-            text-align: center;
-        }
+    .php-effect:hover {
+      transform: scale(1.2) rotate(5deg);
+      filter: drop-shadow(0 0 10px #2caefe);
+      animation: hueRotate 5s infinite linear;
+    }
 
-        .text-content h1 {
-            font-size: 48px;
-            color: #2b2b2b;
-            margin-bottom: 10px;
-        }
+    @keyframes pulse {
+      0%, 100% {
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      }
+      50% {
+        text-shadow: 0 0 20px #2caefe, 0 0 40px #2caefe;
+      }
+    }
 
-        .text-content h3 {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 30px;
-        }
+    @keyframes hueRotate {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
 
-        .text-content p {
-            font-size: 18px;
-            color: #666;
-        }
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+    }
 
-        .image-content img {
-            max-width: 400px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
 
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-        }
-    </style>
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .php-effect {
+        font-size: 60px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Sobre</a>
-            <a href="assuntos.html">Assuntos</a>
-            <a href="contato.html">Contato</a>
-        </nav>
-    </header>
+  <header>
+    <div class="logo">Vitor Girotto</div>
+    <nav>
+      <a href="index.html">Sobre</a>
+      <a href="assuntos.html">Assuntos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
 
-    <section class="content">
-        <div class="text-content">
-            <h1>Vitor Girotto</h1>
-            <h3>Desenvolvedor | Suporte de Sistemas</h3>
-            <p>
-                Sou um desenvolvedor apaixonado por soluções criativas e inovações tecnológicas. 
-                Com experiência em suporte e desenvolvimento de sistemas, busco transformar desafios complexos em soluções eficazes.
-            </p>
-            <br></br>
+  <section class="main-section">
+    <div>
+      <span class="php-effect">PHP</span>
+    </div>
+  </section>
 
-            <p>
-                Na aba de assuntos, tem conteúdos classificados por tópicos, falando sobre o básico da linguagem PHP caso deseje aprender.
-           </p>
-           <br></br>
+  <div class="stars" id="stars-container"></div>
 
-            <p>
-                Caso deseje desenvolver uma aplicação, sistema, site para seu comercio ou conversar referente ao conteúdo do site, fico a disposição ao entrar em contato comigo pelo telefone disponibilizado na aba de contato.
-           </p>
-        </div>
-        <div class="image-content">
-            <img src="image.jpg" alt="Imagem representando Vitor Girotto">
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Vitor Girotto - Todos os direitos reservados.</p>
-    </footer>
+  <script>
+    // Gerador de estrelas
+    const starContainer = document.getElementById('stars-container');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starContainer.appendChild(star);
+    }
+  </script>
 </body>
 </html>
