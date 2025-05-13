@@ -16,7 +16,7 @@
       height: 100vh;
       background: linear-gradient(to bottom, #0b0e21, #151a35);
       color: white;
-      overflow-x: hidden;
+      overflow: hidden;
       position: relative;
     }
 
@@ -24,69 +24,91 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
+      padding: 20px 40px;
       position: absolute;
       width: 100%;
       top: 0;
       z-index: 10;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-size: 16px;
+      flex-wrap: wrap;
     }
 
     .logo {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 24px;
+      background: linear-gradient(45deg, #00ffe1, #2caefe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px #00ffe1;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      position: relative;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background: #2caefe;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #2caefe;
+      transform: scale(1.05);
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     .main-section {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 100px 50px 50px;
-      min-height: 100vh;
-      text-align: center;
+      height: 100vh;
       position: relative;
+      perspective: 1000px;
       z-index: 1;
+      text-align: center;
     }
 
     .php-effect {
-      font-size: 100px;
+      font-size: 150px;
       font-weight: bold;
       background: linear-gradient(45deg, #2caefe, #ff00cc, #00ffe1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: pulse 3s infinite;
-      transition: all 0.5s ease;
+      animation: rotate3D 10s infinite linear;
+      transition: transform 0.1s ease;
       cursor: pointer;
+      text-shadow: 0 0 10px rgba(255,255,255,0.2);
+      display: inline-block;
     }
 
-    .php-effect:hover {
-      transform: scale(1.2) rotate(5deg);
-      filter: drop-shadow(0 0 10px #2caefe);
-      animation: hueRotate 5s infinite linear;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-      }
-      50% {
-        text-shadow: 0 0 20px #2caefe, 0 0 40px #2caefe;
-      }
-    }
-
-    @keyframes hueRotate {
-      0% {
-        filter: hue-rotate(0deg);
-      }
-      100% {
-        filter: hue-rotate(360deg);
-      }
+    @keyframes rotate3D {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
     }
 
     .stars {
@@ -115,15 +137,34 @@
     }
 
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      .logo {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 16px;
+      }
+
       .php-effect {
-        font-size: 60px;
+        font-size: 80px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Vitor Girotto</div>
+    <div class="logo" onclick="window.location.href='index.html'">Vitor Girotto</div>
     <nav>
       <a href="index.html">Sobre</a>
       <a href="assuntos.html">Assuntos</a>
@@ -132,9 +173,7 @@
   </header>
 
   <section class="main-section">
-    <div>
-      <span class="php-effect">PHP</span>
-    </div>
+    <span class="php-effect" id="phpText">PHP</span>
   </section>
 
   <div class="stars" id="stars-container"></div>
@@ -150,6 +189,14 @@
       star.style.animationDelay = `${Math.random() * 5}s`;
       starContainer.appendChild(star);
     }
+
+    // Movimento com o mouse
+    const phpText = document.getElementById('phpText');
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * -30;
+      phpText.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
   </script>
 </body>
 </html>
