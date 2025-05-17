@@ -1,11 +1,14 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vitor Girotto</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    * {
+      * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -35,7 +38,7 @@
     .logo {
       font-weight: bold;
       font-size: 24px;
-      background: linear-gradient(45deg, #00ffe1, #2caefe);
+      background: linear-gradient(45deg, #610459, #770286);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       cursor: pointer;
@@ -44,7 +47,7 @@
 
     .logo:hover {
       transform: scale(1.1);
-      text-shadow: 0 0 10px #00ffe1;
+      text-shadow: 0 0 10px #d400ff;
     }
 
     nav {
@@ -96,7 +99,7 @@
     .php-effect {
       font-size: 150px;
       font-weight: bold;
-      background: linear-gradient(45deg, #2caefe, #ff00cc, #00ffe1);
+      background: linear-gradient(45deg, #9e029e, #5f024c, #210055);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: rotate3D 10s infinite linear;
@@ -152,9 +155,9 @@
       position: absolute;
       width: 60px;
       height: 60px;
-      background: radial-gradient(circle, #00ffe1, #2caefe);
+      background: radial-gradient(circle, #1c056d, #460664);
       border-radius: 50%;
-      box-shadow: 0 0 20px #00ffe1;
+      box-shadow: 0 0 20px #d400ff;
       animation: orbit 20s linear infinite;
     }
 
@@ -165,10 +168,10 @@
     .orbit2 {
       width: 40px;
       height: 40px;
-      background: radial-gradient(circle, #ff00cc, #2caefe);
+      background: radial-gradient(circle, #ad02e0, #5b05ac);
       animation-duration: 40s;
       transform-origin: -150px -150px;
-      box-shadow: 0 0 15px #ff00cc;
+      box-shadow: 0 0 15px #3b2537;
     }
 
     @keyframes orbit {
@@ -254,7 +257,211 @@
       .galaxy, .orbit-container {
         display: none;
       }
-    }
+    }@use "sass:list";
+@use "sass:math";
+@use "sass:color";
+
+@property --y {
+  syntax: "<length>";
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --x {
+  syntax: "<length>";
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --p {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: true;
+}
+
+$sceneWidth: 160px;
+$sceneHeight: 100px;
+$baseColor: #630a57;
+$horizont: 22px;
+
+// Funções utilitárias omitidas por clareza (mesmas que você enviou)
+
+@function cityscape() {
+  $result: ();
+  $data: ();
+  $cx: $sceneWidth / 2px;
+  $cy: $sceneHeight / 2px;
+  $wd: 20;
+
+  $data: (
+    ($m6, $cx - $wd, $cy + 50),
+    ($m1, $cx + $wd, $cy + 50),
+    ($m1, $cx - $wd, $cy + 30),
+    ($m2, $cx - $wd - 10, $cy + 26),
+    ($m1, $cx - $wd - 30, $cy + 20),
+    ($m4, $cx - $wd - 40, $cy + 10),
+    ($m4, $cx + $wd + 30, $cy + 40),
+    ($m1, $cx + $wd, $cy),
+    ($m1, $cx - $wd - 10, $cy - 10),
+    ($m1, $cx + $wd, $cy - 20),
+    ($m2, $cx + $wd + 4, $cy - 25),
+    ($m1, $cx - $wd, $cy - 30),
+    ($m3, $cx + $wd + 30, $cy - 40),
+    ($m2, $cx - $wd - 20, $cy - 42),
+    ($m3, $cx - $wd - 20, $cy - 45),
+    ($m1, $cx - $wd - 10, $cy - 50),
+    ($m5, $cx + $wd + 30, $cy - 54)
+  );
+
+  @for $i from 1 through length($data) {
+    $item: nth($data, $i);
+    $m: nth($item, 1);
+    $x: nth($item, 2);
+    $y: nth($item, 3);
+    $result: list.append(
+      $result,
+      elevation($m, $x * 1px, $y * 1px - 100px),
+      "comma"
+    );
+    $result: list.append($result, elevation($m, $x * 1px, $y * 1px), "comma");
+  }
+  @return $result;
+}
+
+@function rocketScene() {
+  $c: #b2a8d5;
+  $c2: #ea35f7;
+  $c3: transparent;
+  $r: (
+    part((1px, 1px, $sceneWidth / 2, $sceneHeight/2 + 21px, $c, $c3)),
+    part((3px, 4px, $sceneWidth / 2 - 1px, $sceneHeight/2 + 20px, $c, $c3)),
+    part((1px, 2px, $sceneWidth / 2-1.6px, $sceneHeight/2 + 21px, $c, $c3)),
+    part((1px, 2px, $sceneWidth / 2+1.6px, $sceneHeight/2 + 21px, $c, $c3)),
+    part((1px, 3px, $sceneWidth / 2, $sceneHeight/2 + 24px, $c, $c3)),
+    part((1px, 1px, $sceneWidth / 2 - 1px, $sceneHeight/2 + 25px, $c, $c3)),
+    part((1px, 1px, $sceneWidth / 2 + 1px, $sceneHeight/2 + 25px, $c, $c3)),
+    part((1px, 4px, $sceneWidth / 2 - 1.5px, $sceneHeight/2 + 24.5px, $c, $c3)),
+    part((1px, 4px, $sceneWidth / 2 + 1.5px, $sceneHeight/2 + 24.5px, $c, $c3)),
+    part((1px, 1.5px, $sceneWidth / 2 + 1.5px, $sceneHeight/2 + 28.5px, $c2, transparent var(--p))),
+    part((1px, 1.5px, $sceneWidth / 2 - 1.5px, $sceneHeight/2 + 28.5px, $c2, transparent var(--p)))
+  );
+  @return $r;
+}
+
+@function makeStar($item) {
+  $w: list.nth($item, 1);
+  $h: list.nth($item, 2);
+  $x: list.nth($item, 3);
+  $y: list.nth($item, 4);
+  $c: list.nth($item, 5);
+
+  @return linear-gradient(to right, $c, transparent) #{$x} calc(
+      #{$y} + var(--y)
+    ) / #{$w} #{$h};
+}
+
+@function generateStars() {
+  $r: ();
+  @for $i from 0 through 100 {
+    $star: makeStar(
+      (
+        #{random(2) * 1px},
+        #{random(5) * 1px},
+        #{random(100) * 1%},
+        #{random(50) * 1%},
+        white
+      )
+    );
+    $r: append($r, $star, comma);
+  }
+  @return $r;
+}
+
+@function starsBackground() {
+  @return generateStars();
+}
+
+
+@keyframes move {
+  from {
+    --p: 100%;
+  }
+  30%, 70% {
+    --x: 1px;
+  }
+  20%, 22%, 44%, 46%, 48% {
+    --p: 100%;
+  }
+  21%, 45%, 47% {
+    --p: 0%;
+  }
+  40%, 80% {
+    --x: -1px;
+  }
+  to {
+    --y: 100px;
+    --x: 0px;
+    --p: 100%;
+  }
+}
+
+@keyframes stars-move {
+  from {
+    opacity: 0;
+  }
+  5%, 95% {
+    opacity: 1;
+  }
+  to {
+    --y: -100px;
+    opacity: 0;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100dvh;
+  margin: 0;
+  background: radial-gradient(
+      200% 100% at 50% 100%,
+      #191217 55%,
+      #251f2d 62%,
+      transparent
+    ),
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px,
+    #111;
+  overflow: hidden;
+
+  &:before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    mask: linear-gradient(black, transparent 50%);
+    background: starsBackground();
+    animation: stars-move 5s linear infinite;
+    background-repeat: no-repeat;
+  }
+
+  &:after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    mask: linear-gradient(to top, black, transparent 20%, transparent);
+    z-index: 1;
+    backdrop-filter: blur(2rem);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
   </style>
 </head>
 <body>
@@ -278,12 +485,10 @@
     <div class="planet orbit2"></div>
   </div>
 
+<div class="universe-bg"></div>
   <div class="shooting-stars" id="shootingStars"></div>
 
-  <div class="galaxy"></div>
-
   <script>
-    // Estrelas fixas
     const starContainer = document.getElementById('stars-container');
     for (let i = 0; i < 120; i++) {
       const star = document.createElement('div');
@@ -315,7 +520,7 @@
 
     function launchRandomShootingStar() {
       createShootingStar();
-      const next = Math.random() * 5000 + 3000;
+      const next = Math.random() * 400 + 100 ;
       setTimeout(launchRandomShootingStar, next);
     }
 
