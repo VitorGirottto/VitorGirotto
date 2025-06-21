@@ -305,20 +305,28 @@ function drawObstacle(ob) {
         }
       }
 
-      function updateObstacles() {
-        for (let i = 0; i < obstacles.length; i++) {
-          obstacles[i].x -= OBSTACLE_SPEED;
-if (obstacles[i].x + obstacles[i].width < 0) {
-  const randomGap = OBSTACLE_MIN_DISTANCE + Math.random() * (OBSTACLE_MAX_DISTANCE - OBSTACLE_MIN_DISTANCE);
-  const newX = Math.max(lastObstacleX + OBSTACLE_MIN_DISTANCE, WIDTH + randomGap);
+let lastObstacleX = WIDTH + OBSTACLE_GAP * (obstacles.length - 1); // inicialização inicial, fora da função
 
-  const newObstacle = createObstacle(newX);
-  obstacles[i] = newObstacle;
-  lastObstacleX = newObstacle.x;
+function updateObstacles() {
+  for (let i = 0; i < obstacles.length; i++) {
+    obstacles[i].x -= OBSTACLE_SPEED;
 
-  score++;
-  scoreDisplay.textContent = `Pontos: ${score}`;
+    if (obstacles[i].x + obstacles[i].width < 0) {
+      // Define intervalo mínimo e máximo entre obstáculos
+      const randomGap = OBSTACLE_MIN_DISTANCE + Math.random() * (OBSTACLE_MAX_DISTANCE - OBSTACLE_MIN_DISTANCE);
+
+      // Garante que o novo obstáculo fique depois do último
+      const newX = Math.max(lastObstacleX + OBSTACLE_MIN_DISTANCE, WIDTH + randomGap);
+
+      obstacles[i] = createObstacle(newX);
+      lastObstacleX = obstacles[i].x;
+
+      score++;
+      scoreDisplay.textContent = `Pontos: ${score}`;
+    }
+  }
 }
+
 
 
 
