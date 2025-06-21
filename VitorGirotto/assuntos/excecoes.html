@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exceções em PHP - Vitor Girotto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fdfcfc;
+            color: #333;
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            position: relative;
+        }
+
+        nav a:hover::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #4e73df;
+            transition: 0.3s;
+        }
+
+        .content {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .code-block-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .code-block {
+            background-color: #1f1f1f;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 0.9;
+            color: #ffffff;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: rgb(19, 18, 18);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Sobre</a>
+            <a href="../assuntos.html">Assuntos</a>
+            <a href="../contato.html">Contato</a>
+        </nav>
+        <br><br>
+        <h1>Exceções em PHP</h1>
+    </header>
+
+    <section class="content">
+        <p>As exceções em PHP são usadas para capturar e gerenciar erros de forma controlada e eficiente. Ao invés de deixar o código quebrar devido a um erro, podemos lançar exceções, capturá-las e tratá-las de forma adequada. Vamos explorar como funciona o tratamento de exceções com os blocos <code>try-catch</code> e como podemos lançar exceções personalizadas.</p>
+        <br><br>
+
+        <h2>Tratamento Básico com Try-Catch</h2>
+        <p>O PHP usa o bloco <code>try-catch</code> para capturar exceções. Quando um erro ocorre no bloco <code>try</code>, a exceção é lançada e capturada pelo bloco <code>catch</code>.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.try-catch-example')">Copiar</button>
+            <div class="code-block try-catch-example">
+                <p>try {</p>
+                <p>&nbsp;&nbsp;$numero = 10 / 0;</p>
+                <p>} catch (Exception $e) {</p>
+                <p>&nbsp;&nbsp;echo "Erro: " . $e->getMessage();</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <p>O código acima tenta dividir 10 por 0, o que geraria uma exceção. O erro será capturado pelo bloco <code>catch</code> e a mensagem do erro será exibida.</p>
+
+        <br><br>
+        <h2>Lançando Exceções</h2>
+        <p>É possível lançar exceções manualmente utilizando a palavra-chave <code>throw</code>. Isso é útil para criar exceções personalizadas, como por exemplo, quando um valor não está no formato correto ou quando uma condição de erro é atendida.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.throw-example')">Copiar</button>
+            <div class="code-block throw-example">
+                <p>function validarIdade($idade) {</p>
+                <p>&nbsp;&nbsp;if ($idade < 18) {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;throw new Exception("Idade inválida. A idade mínima é 18.");</p>
+                <p>&nbsp;&nbsp;}</p>
+                <p>&nbsp;&nbsp;echo "Idade válida!";</p>
+                <p>}</p>
+                <p>try {</p>
+                <p>&nbsp;&nbsp;validarIdade(15);</p>
+                <p>} catch (Exception $e) {</p>
+                <p>&nbsp;&nbsp;echo "Erro: " . $e->getMessage();</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <p>No exemplo acima, a função <code>validarIdade</code> lança uma exceção se a idade for menor que 18. Quando chamada com a idade 15, uma exceção é disparada, e o erro é capturado no bloco <code>catch</code>.</p>
+
+        <br><br>
+        <h2>Exceções Personalizadas</h2>
+        <p>Você pode criar suas próprias classes de exceções para representar erros específicos. Isso ajuda a organizar melhor o código e melhorar o tratamento de erros.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.custom-exception-example')">Copiar</button>
+            <div class="code-block custom-exception-example">
+                <p>class MinhaExcecao extends Exception {</p>
+                <p>&nbsp;&nbsp;public function __construct($message) {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct($message);</p>
+                <p>&nbsp;&nbsp;}</p>
+                <p>}</p>
+                <p>try {</p>
+                <p>&nbsp;&nbsp;throw new MinhaExcecao("Erro personalizado ocorreu!");</p>
+                <p>} catch (MinhaExcecao $e) {</p>
+                <p>&nbsp;&nbsp;echo "Mensagem da exceção: " . $e->getMessage();</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <p>O exemplo acima cria uma exceção personalizada chamada <code>MinhaExcecao</code>, que estende a classe <code>Exception</code> padrão do PHP. Quando disparada, a exceção pode ser capturada como qualquer outra exceção, mas com uma classe personalizada.</p>
+
+        <br><br>
+        <h2>Considerações Finais</h2>
+        <p>O tratamento de exceções é essencial para lidar com erros de maneira mais controlada e profissional em PHP. Ao usar <code>try-catch</code>, podemos garantir que os erros sejam tratados de forma adequada, sem interromper o fluxo do programa. Além disso, a criação de exceções personalizadas torna o código mais legível e organizado.</p>
+    </section>
+
+    <script>
+        function copyToClipboard(selector) {
+            const codeBlock = document.querySelector(selector);
+            const text = codeBlock.innerText || codeBlock.textContent;
+            
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('Código copiado!');
+        }
+    </script>
+</body>
+</html>
