@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Sky Runner Futurista</title>
+<style>
+  body, html {
+    margin:0; padding:0; overflow:hidden; background:#0a0f2f; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  canvas {
+    display: block;
+    background: linear-gradient(to top, #0a0f2f 0%, #1a237e 80%);
+    margin: 0 auto;
+    touch-action: none;
+  }
+  #score {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    color: #00ce3a;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 8px #04922c;
+    user-select: none;
+  }
+  #startScreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00943e;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 12px #03a03c;
+    cursor: pointer;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+  <div id="score">Pontos: 0</div>
+  <div id="startScreen">Toque para começar</div>
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+<script>
+(() => {
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const scoreDisplay = document.getElementById('score');
+  const startScreen = document.getElementById('startScreen');
+
+  const WIDTH = canvas.width;
+  const HEIGHT = canvas.height;
+
+  // Configurações
+const GRAVITY = 0.3;
+const JUMP_POWER = 18;
+const PLAYER_WIDTH = 130;
+const PLAYER_HEIGHT = 180;
+const OBSTACLE_WIDTH = 30;
+const OBSTACLE_HEIGHT = 50;
+const OBSTACLE_GAP = 400;
+const OBSTACLE_SPEED = 3;
+
+
+  let gameRunning = false;
+  let score = 0;
+
+  // Player
+  const player = {
+    x: WIDTH / 4,
+    y: HEIGHT - PLAYER_HEIGHT - 10,
+    vy: 0,
+    onGround: true,
+    width: PLAYER_WIDTH,
+    height: PLAYER_HEIGHT,
+    color: '#00ffe3',
+  };
+
+  // Obstáculos
+  let obstacles = [];
+
+  function createObstacle(x) {
+    return {
+      x: x,
+      y: HEIGHT - OBSTACLE_HEIGHT - 10,
+      width: OBSTACLE_WIDTH,
+      height: OBSTACLE_HEIGHT,
+      color: '#ff0044'
+    };
+  }
+
+  function resetGame() {
+    score = 0;
+    player.y = HEIGHT - PLAYER_HEIGHT - 10;
+    player.vy = 0;
+    player.onGround = true;
+    obstacles = [];
+    // cria obstáculos iniciais
+for(let i = 0; i < 3; i++) {
+  obstacles.push(createObstacle(WIDTH + 600 + i * OBSTACLE_GAP));
+}
+
+    startScreen.style.display = 'none';
+    scoreDisplay.textContent = "Pontos: 0";
+    gameRunning = true;
+    loop();
+  }
+const playerImg = new Image();
+playerImg.src = 'sherek.png';
+
+function drawPlayer() {
+  if (playerImg.complete && playerImg.naturalWidth !== 0) {
+    ctx.shadowColor = '#00ffe3';
+    ctx.shadowBlur = 50;
+    ctx.drawImage(playerImg, player.x, player.y, player.width, player.height);
+    ctx.shadowBlur = 0;
+  } else {
+    ctx.fillStyle = player.color;
+    ctx.shadowColor = '#00ffe3';
+    ctx.shadowBlur = 50;
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+    ctx.shadowBlur = 0;
+  }
+}
+
+
+
+  function drawObstacle(ob) {
+    ctx.fillStyle = ob.color;
+    ctx.fillRect(ob.x, ob.y, ob.width, ob.height);
+
+    ctx.strokeStyle = '#ff6699';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(ob.x, ob.y, ob.width, ob.height);
+  }
+
+  function updatePlayer() {
+    player.vy += GRAVITY;
+    player.y += player.vy;
+
+    if(player.y + player.height >= HEIGHT - 10) {
+      player.y = HEIGHT - player.height - 10;
+      player.vy = 0;
+      player.onGround = true;
+    }
+  }
+
+  function updateObstacles() {
+    for(let i = 0; i < obstacles.length; i++) {
+      obstacles[i].x -= OBSTACLE_SPEED;
+
+      // quando o obstáculo sai da tela, reseta para o final
+      if(obstacles[i].x + obstacles[i].width < 0) {
+        obstacles[i].x = WIDTH + OBSTACLE_GAP;
+        score++;
+        scoreDisplay.textContent = `Pontos: ${score}`;
+      }
+    }
+  }
+
+  function checkCollision() {
+    for(let ob of obstacles) {
+      if (
+        player.x < ob.x + ob.width &&
+        player.x + player.width > ob.x &&
+        player.y < ob.y + ob.height &&
+        player.y + player.height > ob.y
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function clear() {
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+  }
+
+  function loop() {
+    if(!gameRunning) return;
+
+    clear();
+    updatePlayer();
+    updateObstacles();
+
+    drawPlayer();
+    obstacles.forEach(drawObstacle);
+
+    if(checkCollision()) {
+      gameOver();
+      return;
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  function gameOver() {
+    gameRunning = false;
+    startScreen.style.display = 'block';
+    startScreen.textContent = `Game Over! Pontos: ${score}\nToque para jogar novamente`;
+  }
+
+  function jump() {
+    if(player.onGround) {
+      player.vy = -JUMP_POWER;
+      player.onGround = false;
+    }
+  }
+
+  // Eventos toque e clique
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if(!gameRunning) resetGame();
+    else jump();
+  }, { passive: false });
+
+  canvas.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    if(!gameRunning) resetGame();
+    else jump();
+  });
+
+})();
+</script>
+</body>
+</html>
