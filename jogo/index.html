@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Sky Runner Shrek</title>
-    <link rel="icon" type="image/png" href="sherek.png" />
+  <link rel="icon" type="image/png" href="sherek.png" />
+
   <style>
     body, html {
       margin: 0;
@@ -156,7 +157,13 @@
 <body>
 
   <div id="score">Pontos: 0</div>
-  <div id="startScreen">Toque para começar</div>
+<div id="startScreen">
+  <div>Toque para começar</div>
+  <div style="font-size: 16px; margin-top: 10px; font-weight: normal;">
+    Chegue a 10 pontos para vencer!
+  </div>
+</div>
+
 
   <div id="victoryScreen">
     <h1 style="color: #fff8dc; font-size: 40px; text-shadow: 2px 2px 6px #000;">Você venceu!</h1>
@@ -438,12 +445,23 @@ body.style.backgroundSize = "cover";
 body.style.backgroundSize = "cover";
       });
 
-      // Garantir que a música toque após interação
-      window.addEventListener('click', () => {
-        if (bgMusic.paused) {
-          bgMusic.play().catch(() => {});
-        }
-      }, { once: true });
+function iniciarMusica() {
+  if (bgMusic.paused) {
+    bgMusic.volume = 0.6; // ajuste de volume
+    bgMusic.loop = true;
+    bgMusic.play().catch(() => {
+      console.warn("Navegador bloqueou autoplay. Tocará após interação.");
+    });
+  }
+}
+
+// Tentar tocar imediatamente (caso o navegador permita)
+iniciarMusica();
+
+// Tocar após o primeiro clique ou toque, se necessário
+document.addEventListener('click', iniciarMusica, { once: true });
+document.addEventListener('touchstart', iniciarMusica, { once: true });
+
 
     })();
   </script>
