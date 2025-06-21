@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #29003d;
+  overflow: hidden;
+  color: #fff;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  color: #0092ed;
+}
+
+.folder-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.folder {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #340057;
+  border-radius: 10px;
+  padding: 20px;
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  color: #c3e8ff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.folder:hover {
+  background: rgba(43, 0, 43, 0.1);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff0090;
+}
+
+.folder .icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}

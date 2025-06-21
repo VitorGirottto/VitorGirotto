@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays em PHP - Vitor Girotto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fdfcfc;
+            color: #333;
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            position: relative;
+        }
+
+        nav a:hover::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #4e73df;
+            transition: 0.3s;
+        }
+
+        .content {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .code-block {
+            background-color: #1f1f1f;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 0.9;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: rgb(19, 18, 18);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Sobre</a>
+            <a href="../assuntos.html">Assuntos</a>
+            <a href="../contato.html">Contato</a>
+        </nav>
+        <br></br>
+        <h1>Arrays em PHP</h1>
+    </header>
+
+    <section class="content">
+        <p>Arrays em PHP são estruturas de dados que permitem armazenar múltiplos valores em uma única variável. Eles são muito flexíveis, podendo conter qualquer tipo de dado, como números, strings ou até mesmo outros arrays. Existem três tipos principais de arrays no PHP:</p>
+<br></br>
+        <h2>1. Array Indexado</h2>
+        <p>O Array Indexado utiliza índice para acessar ou chamar valores que estão dentro do array. Os índices são numéricos e começam de 0, indo até o número de elementos - 1.</p>
+        
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.indexado')">Copiar</button>
+            <p>$frutas = ["maçã", "banana", "manga"];</p>
+            <p>echo $frutas[0]; // Saída: maçã</p>
+        </div>
+        
+        <p>No exemplo acima, o array `$frutas` possui três valores: maçã, banana e manga. O valor “maçã” está no índice 0, "banana" no índice 1, e "manga" no índice 2. Ao acessar `$frutas[0]`, o valor “maçã” é retornado.</p>
+        <br></br>
+
+        <h3>Exemplo com Laço de Repetição</h3>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.indexado-for')">Copiar</button>
+            <p>foreach ($frutas as $fruta) {</p>
+            <p>    echo $fruta . "&lt;br&gt;";</p>
+            <p>}</p>
+        </div>
+        <p>Este código irá imprimir todos os valores do array $frutas usando um laço de repetição <code>foreach</code>.</p>
+        <br></br>
+
+        <h2>2. Array Associativo</h2>
+        <p>No Array Associativo, os índices são substituídos por chaves, permitindo uma associação mais intuitiva entre a chave e o valor.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.associativo')">Copiar</button>
+            <p>$idades = ["João" => 25, "Maria" => 30, "Pedro" => 22];</p>
+            <p>echo $idades["Maria"]; // Saída: 30</p>
+        </div>
+        
+        <p>Neste exemplo, a chave “João” está associada ao valor 25, a chave “Maria” está associada ao valor 30, e “Pedro” está associado ao valor 22. Ao acessar $idades["Maria"], obtemos o valor 30.</p>
+        <br></br>
+
+        <h3>Exemplo com Laço de Repetição em Array Associativo</h3>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.associativo-for')">Copiar</button>
+            <p>foreach ($idades as $nome => $idade) {</p>
+            <p>    echo "$nome tem $idade anos.&lt;br&gt;";</p>
+            <p>}</p>
+        </div>
+        <p>Este código irá imprimir o nome e a idade de cada pessoa do array $idades.</p>
+        <br></br>
+
+        <h2>3. Array Multidimensional</h2>
+        <p>O Array Multidimensional é um array que contém outros arrays dentro dele, permitindo representar estruturas de dados mais complexas, como matrizes.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.multidimensional')">Copiar</button>
+            <p>$matriz = [</p>
+            <p>    ["nome" => "João", "idade" => 25],</p>
+            <p>    ["nome" => "Maria", "idade" => 30],</p>
+            <p>    ["nome" => "Pedro", "idade" => 22]</p>
+            <p>];</p>
+            <p>echo $matriz[0]["nome"]; // Saída: João</p>
+        </div>
+
+        <p>No exemplo acima, temos um array multidimensional onde cada elemento é um array associativo. Para acessar o nome de João, usamos o índice 0 e a chave "nome".</p>
+        <br></br>
+
+        <h3>Exemplo de Laço para Array Multidimensional</h3>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.multidimensional-for')">Copiar</button>
+            <p>foreach ($matriz as $pessoa) {</p>
+            <p>    echo "Nome: " . $pessoa["nome"] . ", Idade: " . $pessoa["idade"] . "&lt;br&gt;";</p>
+            <p>}</p>
+        </div>
+        <p>Este código irá imprimir o nome e a idade de todas as pessoas dentro do array multidimensional.</p>
+        <br></br>
+
+        <h2>Outros Tipos de Arrays</h2>
+        <ul>
+            <li><strong>Array Numérico:</strong> Arrays com índices numéricos automáticos, como no exemplo do array indexado.</li>
+            <li><strong>Array Associativo:</strong> Arrays com chaves personalizadas (strings) para acessar os elementos.</li>
+            <li><strong>Array Multidimensional:</strong> Arrays contendo outros arrays, que podem ser indexados numericamente ou associativamente.</li>
+        </ul>
+        <br></br>
+
+        <h2>Boas Práticas no Uso de Arrays</h2>
+        <ul>
+            <li><strong>Evite usar índices numéricos em arrays muito grandes.</strong> Prefira arrays associativos para tornar o código mais legível e fácil de manter.</li>
+            <li><strong>Evite arrays com chaves duplicadas.</strong> O PHP sobrescreve os valores quando há chaves duplicadas.</li>
+            <li><strong>Use a função <code>count()</code> para determinar o número de elementos de um array.</strong></li>
+        </ul>
+
+        <p>Com os arrays, podemos organizar dados de forma eficiente e lógica, tornando o código mais flexível e compreensível. Eles são uma das estruturas fundamentais no PHP e são amplamente utilizados em qualquer aplicação de grande porte.</p>
+    </section>
+
+    <script>
+        function copyToClipboard(selector) {
+            const codeBlock = document.querySelector(selector);
+            const text = codeBlock.innerText || codeBlock.textContent;
+            
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('Código copiado!');
+        }
+    </script>
+</body>
+</html>

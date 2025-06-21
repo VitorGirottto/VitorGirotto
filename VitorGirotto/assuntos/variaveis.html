@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução ao PHP - Vitor Girotto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fdfcfc;
+            color: #333;
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            position: relative;
+        }
+
+        nav a:hover::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            transition: 0.3s;
+        }
+
+        .content {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .code-block {
+            background-color: #1f1f1f;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 0.9;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: rgb(19, 18, 18);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #0e0d0d;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Sobre</a>
+            <a href="../assuntos.html">Assuntos</a>
+            <a href="../contato.html">Contato</a>
+        </nav>
+        <br></br>
+        <h1>Variáveis no PHP</h1>
+    </header>
+
+    <section class="content">
+        <p>O PHP é uma linguagem de programação amplamente usada no desenvolvimento web. Ele é um exemplo de linguagem fracamente tipada, o que significa que as variáveis não precisam ser declaradas com um tipo específico, e o tipo da variável é determinado automaticamente conforme o valor atribuído.</p>
+
+        <br><br>
+        <h2>Exemplo de Variáveis</h2>
+        <p>No exemplo abaixo, uma variável é criada e seu tipo é determinado automaticamente:</p>
+        
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.exemplo-variavel')">Copiar</button>
+            <p class="exemplo-variavel">$numero = 10;  // O PHP define automaticamente como inteiro</p>
+            <p class="exemplo-variavel">echo $numero;  // saída: 10</p>
+        </div>
+
+        <br><br>
+        <h2>Regras para Nomes de Variáveis</h2>
+        <p>Embora o PHP seja flexível quanto aos nomes das variáveis, existem algumas regras a serem seguidas:</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.regras-variavel')">Copiar</button>
+            <p class="regras-variavel">$nome = "Maria";</p>
+            <p class="regras-variavel">$idade = 25;</p>
+            <p class="regras-variavel">$_nomeUsuario = "João";  // válido</p>
+            <p class="regras-variavel">$1usuario = "Carlos";  // inválido (não pode começar com número)</p>
+            <p class="regras-variavel">$nome_completo = "Ana Paula";  // válido</p>
+            <p class="regras-variavel">$nome completo = "Pedro";  // inválido (espaço não permitido)</p>
+        </div>
+
+        <br><br>
+        <h2>Case Sensitivity (Sensibilidade a Maiúsculas e Minúsculas)</h2>
+        <p>O PHP diferencia maiúsculas de minúsculas. Ou seja, <code>$Nome</code> e <code>$nome</code> são tratadas como variáveis diferentes:</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.case-sensitivity')">Copiar</button>
+            <p class="case-sensitivity">$Nome = "Lucas";</p>
+            <p class="case-sensitivity">$nome = "Maria";</p>
+            <p class="case-sensitivity">echo $Nome;  // saída: Lucas</p>
+            <p class="case-sensitivity">echo $nome;  // saída: Maria</p>
+        </div>
+
+        <br><br>
+        <h2>Variáveis Reservadas e Superglobais</h2>
+        <p>Existem palavras e funções internas no PHP que não devem ser usadas como nomes de variáveis, como <code>$this</code>, <code>$class</code>, <code>$function</code>, entre outras.</p>
+
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.reservadas-superglobais')">Copiar</button>
+            <p class="reservadas-superglobais">$class = "MinhaClasse";  // não recomendado (class é palavra reservada)</p>
+            <p class="reservadas-superglobais">$function = "MinhaFuncao";  // não recomendado (function é palavra reservada)</p>
+            <p class="reservadas-superglobais">$_POST = "valor";  // não recomendado (conflito com a superglobal $_POST)</p>
+        </div>
+        <br></br>
+
+        <h2>Tipos de Variáveis no PHP</h2>
+        <p>O PHP suporta diversos tipos de dados em suas variáveis, como:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.tipos-variaveis')">Copiar</button>
+            <p class="tipos-variaveis">$inteiro = 42;  // tipo inteiro</p>
+            <p class="tipos-variaveis">$decimal = 3.14;  // tipo float</p>
+            <p class="tipos-variaveis">$texto = "Olá, Mundo!";  // tipo string</p>
+            <p class="tipos-variaveis">$booleano = true;  // tipo booleano</p>
+            <p class="tipos-variaveis">$array = [1, 2, 3, 4, 5];  // tipo array</p>
+        </div>
+
+        <br><br>
+
+        <h2>Conversão de Tipos (Type Casting)</h2>
+        <p>O PHP permite a conversão de tipos de variáveis de forma automática ou manual. Veja o exemplo:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.conversao-tipos')">Copiar</button>
+            <p class="conversao-tipos">$valor = "123";  // variável do tipo string</p>
+            <p class="conversao-tipos">$numero = (int) $valor;  // convertendo explicitamente para inteiro</p>
+            <p class="conversao-tipos">echo $numero;  // saída: 123</p>
+        </div>
+        <br></br>
+
+        <h2>Variáveis Superglobais</h2>
+        <p>Variáveis como <code>$_GET</code> e <code>$_POST</code> são superglobais e usadas para acessar dados de formulários:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.superglobais')">Copiar</button>
+            <p class="superglobais">$nome = $_POST['nome'];</p>
+            <p class="superglobais">echo "Olá, " . $nome;</p>
+        </div>
+        <br></br>
+
+        <h2>Variáveis de Sessão</h2>
+        <p>As variáveis de sessão são úteis para armazenar informações ao longo da navegação de um usuário:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.sessao')">Copiar</button>
+            <p class="sessao">session_start();</p>
+            <p class="sessao">$_SESSION['usuario'] = "João";</p>
+            <p class="sessao">echo $_SESSION['usuario'];  // saída: João</p>
+        </div>
+        <br></br>
+
+        <h2>Constantes em PHP</h2>
+        <p>O PHP permite a definição de constantes, que são valores imutáveis:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.constantes')">Copiar</button>
+            <p class="constantes">define("PI", 3.14);</p>
+            <p class="constantes">echo PI;  // saída: 3.14</p>
+        </div>
+        <br></br>
+
+        <h2>Escopo de Variáveis</h2>
+        <p>As variáveis podem ter três tipos de escopo em PHP: local, global e de parâmetro:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.escopo')">Copiar</button>
+            <p class="escopo">function exemplo() {</p>
+            <p class="escopo">    $local = "Eu sou uma variável local";</p>
+            <p class="escopo">    echo $local;</p>
+            <p class="escopo">}</p>
+            <p class="escopo">exemplo();</p>
+        </div>
+        <br></br>
+
+        <h2>Destruição de Variáveis</h2>
+        <p>É possível destruir uma variável com a função <code>unset()</code>:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard('.destruicao')">Copiar</button>
+            <p class="destruicao">$variavel = "Isto é uma variável";</p>
+            <p class="destruicao">unset($variavel);</p>
+        </div>
+
+        <br><br>
+        <h2>Boas Práticas</h2>
+        <ul>
+            <li><strong>Evite palavras reservadas:</strong> Não utilize palavras como <code>$this</code>, <code>$class</code>, <code>$function</code>.</li>
+            <li><strong>Utilize convenções de nomenclatura:</strong> Use padrões como <code>snake_case</code> ou <code>camelCase</code> para facilitar a leitura.</li>
+            <li><strong>Evite sobrescrever funções internas:</strong> Não nomeie variáveis com nomes de funções internas, como <code>$strlen</code>.</li>
+        </ul>
+
+        <p>Seguir essas boas práticas torna o código mais limpo, organizado e de fácil manutenção.</p>
+    </section>
+    
+    <script>
+        function copyToClipboard(selector) {
+            const codeBlock = document.querySelector(selector);
+            const text = codeBlock.innerText || codeBlock.textContent;
+            
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('Código copiado!');
+        }
+    </script>
+</body>
+</html>
