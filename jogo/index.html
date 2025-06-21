@@ -194,15 +194,17 @@
       const WIDTH = canvas.width;
       const HEIGHT = canvas.height;
 
-      const GRAVITY = 2.5;
+      const GRAVITY = 2.7;
       const JUMP_POWER = 40;
       const PLAYER_WIDTH = 130;
       const PLAYER_HEIGHT = 180;
       const OBSTACLE_WIDTH = 30;
       const OBSTACLE_HEIGHT = 50;
       const OBSTACLE_GAP = 350;
-      const OBSTACLE_SPEED = 10;
+      const OBSTACLE_SPEED = 11;
       const OBSTACLE_MIN_DISTANCE = 300; // distância mínima entre obstáculos
+      const OBSTACLE_MAX_DISTANCE = 600; // limite superior para evitar espaçamento exagerado
+
 let lastObstacleX = 0;
 
 
@@ -307,10 +309,9 @@ function drawObstacle(ob) {
         for (let i = 0; i < obstacles.length; i++) {
           obstacles[i].x -= OBSTACLE_SPEED;
 if (obstacles[i].x + obstacles[i].width < 0) {
-  const MIN_GAP = OBSTACLE_MIN_DISTANCE;
-  const EXTRA_GAP = Math.random() * 250;
+  const randomGap = OBSTACLE_MIN_DISTANCE + Math.random() * (OBSTACLE_MAX_DISTANCE - OBSTACLE_MIN_DISTANCE);
+  const newX = Math.max(lastObstacleX + OBSTACLE_MIN_DISTANCE, WIDTH + randomGap);
 
-  const newX = Math.max(lastObstacleX + MIN_GAP, WIDTH + MIN_GAP + EXTRA_GAP);
   const newObstacle = createObstacle(newX);
   obstacles[i] = newObstacle;
   lastObstacleX = newObstacle.x;
@@ -318,6 +319,7 @@ if (obstacles[i].x + obstacles[i].width < 0) {
   score++;
   scoreDisplay.textContent = `Pontos: ${score}`;
 }
+
 
 
 
