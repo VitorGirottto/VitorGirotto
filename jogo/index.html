@@ -202,6 +202,9 @@
       const OBSTACLE_HEIGHT = 50;
       const OBSTACLE_GAP = 350;
       const OBSTACLE_SPEED = 10;
+      const OBSTACLE_MIN_DISTANCE = 300; // distância mínima entre obstáculos
+let lastObstacleX = 0;
+
 
       let gameRunning = false;
       let score = 0;
@@ -304,12 +307,19 @@ function drawObstacle(ob) {
         for (let i = 0; i < obstacles.length; i++) {
           obstacles[i].x -= OBSTACLE_SPEED;
 if (obstacles[i].x + obstacles[i].width < 0) {
-  const MIN_GAP = 700; // intervalo mínimo garantido
-  const EXTRA_GAP = Math.random() * 250; // até 200px extra
-  obstacles[i] = createObstacle(WIDTH + MIN_GAP + EXTRA_GAP);
+  const MIN_GAP = OBSTACLE_MIN_DISTANCE;
+  const EXTRA_GAP = Math.random() * 250;
+
+  const newX = Math.max(lastObstacleX + MIN_GAP, WIDTH + MIN_GAP + EXTRA_GAP);
+  const newObstacle = createObstacle(newX);
+  obstacles[i] = newObstacle;
+  lastObstacleX = newObstacle.x;
+
   score++;
   scoreDisplay.textContent = `Pontos: ${score}`;
 }
+
+
 
 
 
