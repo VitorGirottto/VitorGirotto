@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Desenvolvimento Medieval</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Uncial+Antiqua&family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-overlay">
+        <div class="castle-loading">
+            <div class="tower tower-1"></div>
+            <div class="tower tower-2"></div>
+            <div class="tower tower-3"></div>
+            <div class="castle-gate"></div>
+        </div>
+        <p class="loading-text">Preparando o Reino...</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="medieval-container">
+        <!-- Floating medieval elements -->
+        <div class="floating-elements">
+            <div class="floating-torch torch-1">🔥</div>
+            <div class="floating-torch torch-2">🔥</div>
+            <div class="floating-shield">🛡️</div>
+            <div class="floating-sword">⚔️</div>
+        </div>
+
+        <!-- Castle Backdrop -->
+        <div class="castle-backdrop">
+            <div class="castle-silhouette">
+                <div class="castle-tower castle-tower-1"></div>
+                <div class="castle-tower castle-tower-2"></div>
+                <div class="castle-tower castle-tower-3"></div>
+                <div class="castle-wall"></div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="medieval-header">
+            <div class="header-decoration">
+                <div class="crown-left">👑</div>
+                <div class="title-scroll">
+                    <h1 class="medieval-title">
+                        <span class="title-ornament">⚔️</span>
+                        Central de Desenvolvimento
+                        <span class="title-ornament">⚔️</span>
+                    </h1>
+                    <p class="medieval-subtitle">Reino dos Projetos Místicos</p>
+                </div>
+                <div class="crown-right">👑</div>
+            </div>
+            <div class="header-border"></div>
+        </header>
+
+        <!-- Realm Introduction -->
+        <section class="realm-intro">
+            <div class="scroll-intro">
+                <p class="realm-text">
+                    <span class="illuminated-letter">B</span>em-vindo ao Reino dos Códigos Sagrados, com apenas sites estáticos
+                </p>
+                <div class="scroll-decoration">
+                    <span class="scroll-ornament">🗡️</span>
+                    <span class="scroll-ornament">🏰</span>
+                    <span class="scroll-ornament">🗡️</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Folders Section -->
+        <main class="folders-realm">
+            <div id="foldersList" class="folders-grid">
+                <!-- Folders will be populated by JavaScript -->
+            </div>
+
+        </main>
+
+        <!-- Medieval Footer -->
+        <footer class="medieval-footer">
+            <div class="footer-scroll">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        <span class="footer-ornament">⚔️</span>
+                        Forjado nas Chamas do Desenvolvimento
+                        <span class="footer-ornament">⚔️</span>
+                    </p>
+                    <div class="footer-year">Vitor Junior da Paz Girotto</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Folder Details Modal -->
+    <div id="folderModal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-parchment" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-content">
+                <div id="modalDescription" class="modal-description"></div>
+                <div class="modal-metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-icon">🗓️</span>
+                        <span id="modalDate" class="metadata-text"></span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-icon">📄</span>
+                        <span id="modalFiles" class="metadata-text"></span>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-medieval btn-primary" onclick="openFolder()">
+                        <span class="btn-icon">🌐</span>
+                        Abrir site
+                    </button>
+                    <button class="btn-medieval btn-primary" onclick="openRepository()">
+                        <span class="btn-icon">🛡️</span>
+                        Ver Repositório
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
