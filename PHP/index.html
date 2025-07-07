@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    .site-description {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #73008d;
+      max-width: 600px;
+      padding: 0 20px;
+      line-height: 1.5;
+      text-align: center;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: linear-gradient(to bottom, #0b0e21, #151a35);
+      color: white;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      background: radial-gradient(
+          200% 100% at 50% 100%,
+          #191217 55%,
+          #251f2d 62%,
+          transparent
+        ),
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px,
+        #111;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 24px;
+      background: linear-gradient(45deg, #610459, #770286);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px #d400ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      position: relative;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background: #75008d;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #75008d;
+      transform: scale(1.05);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .main-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      perspective: 1000px;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .php-effect {
+      font-size: 150px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #9e029e, #5f024c, #210055);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rotate3D 10s infinite linear;
+      transition: transform 0.1s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    @keyframes rotate3D {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      .logo {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 16px;
+      }
+
+      .php-effect {
+        font-size: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">Vitor Girotto</div>
+    <nav>
+      <a href="index.html">Sobre</a>
+      <a href="assuntos.html">Assuntos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+<section class="main-section">
+  <div class="content-wrapper">
+    <span class="php-effect" id="phpText">PHP</span>
+    <p class="site-description">Um universo repleto de conhecimento PHP</p>
+  </div>
+</section>
+
+  <div class="stars" id="stars-container"></div>
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <script>
+    const starContainer = document.getElementById('stars-container');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starContainer.appendChild(star);
+    }
+
+    // Efeito 3D no texto com o mouse
+    const phpText = document.getElementById('phpText');
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * -30;
+      phpText.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+
+    // Estrelas cadentes contínuas
+    const shootingStarsContainer = document.getElementById('shootingStars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      shootingStarsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+
+    function launchRandomShootingStar() {
+      createShootingStar();
+      const next = Math.random() * 400 + 100;
+      setTimeout(launchRandomShootingStar, next);
+    }
+
+    launchRandomShootingStar();
+  </script>
+</body>
+</html>
