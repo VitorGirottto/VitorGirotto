@@ -26,7 +26,7 @@ const mockFolders = [
         description: 'Um site destinado a apredizado referente a liguagem PHP, sobre assuntos básicos de lógica, mas um assunto fundamental.',
         type: 'PHP',
         lastModified: '2025-02-20T10:30:00Z',
-        fileCount: 0,
+        fileCount: 13,
         path: './PHP/'
     }
 ];
