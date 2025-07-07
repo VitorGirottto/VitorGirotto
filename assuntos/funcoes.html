@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="../image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Funções em PHP - Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px, #14001f;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      text-decoration: none;
+      background: #75008d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+
+    .back-button:hover {
+      background: #a42bff;
+    }
+
+    main.content {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: left;
+      user-select: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      color: #d4aaff;
+      margin-bottom: 15px;
+    }
+
+    p, ul, li {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li strong {
+      color: #e3b7ff;
+    }
+
+    code {
+      background-color: #3e2c59;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      color: #f0c7ff;
+    }
+
+    .code-block {
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      padding: 20px 15px 15px 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      color: #ffffff;
+      position: relative;
+      user-select: text;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #75008d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .copy-btn:hover {
+      background-color: #a42bff;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      user-select: none;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      main.content {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="../assuntos.html" class="back-button">Voltar</a>
+
+  <main class="content">
+    <h1>Funções em PHP</h1>
+    <p>As funções em PHP são blocos de código que você pode definir uma vez e reutilizar sempre que necessário. Elas são úteis para evitar a repetição de código e melhorar a organização do seu programa.</p>
+    <br><br>
+    
+    <h2>Definindo uma Função Simples</h2>
+    <p>Uma função em PHP é definida com a palavra-chave <code>function</code>, seguida de um nome para a função, parênteses e um bloco de código entre chaves.</p>
+    
+    <div class="code-block funcao-simples">
+      <button class="copy-btn" onclick="copyToClipboard('.funcao-simples')">Copiar</button>
+      function CalcularProduto($valor1, $valor2) {<br>
+      &nbsp;&nbsp;$valor_total = $valor1 * $valor2;<br>
+      &nbsp;&nbsp;echo "A multiplicação de valores é " . $valor_total;<br>
+      }<br>
+      $valor1 = readline("Digite o primeiro valor: ");<br>
+      $valor2 = readline("Digite o segundo valor: ");<br>
+      CalcularProduto($valor1, $valor2);
+    </div>
+    <br><br>
+    
+    <h2>Funções Sem Parâmetros</h2>
+    <p>Em uma função, você pode não passar parâmetros. Neste caso, você pode definir as variáveis diretamente dentro da função.</p>
+
+    <div class="code-block funcao-sem-parametros">
+      <button class="copy-btn" onclick="copyToClipboard('.funcao-sem-parametros')">Copiar</button>
+      function CalcularProduto() {<br>
+      &nbsp;&nbsp;$valor1 = readline("Digite o primeiro valor: ");<br>
+      &nbsp;&nbsp;$valor2 = readline("Digite o segundo valor: ");<br>
+      &nbsp;&nbsp;$valor_total = $valor1 * $valor2;<br>
+      &nbsp;&nbsp;echo "A multiplicação de valores é " . $valor_total;<br>
+      }<br>
+      CalcularProduto();
+    </div>
+    <br><br>
+
+    <h2>Funções com Parâmetros Diretos</h2>
+    <p>Você também pode passar valores diretamente para os parâmetros da função, sem precisar pedir ao usuário para digitá-los.</p>
+
+    <div class="code-block parametros-diretos">
+      <button class="copy-btn" onclick="copyToClipboard('.parametros-diretos')">Copiar</button>
+      function CalcularProduto($valor1, $valor2) {<br>
+      &nbsp;&nbsp;echo "Valor um é " . $valor1 . " e o valor dois é " . $valor2;<br>
+      &nbsp;&nbsp;$valor_total = $valor1 * $valor2;<br>
+      &nbsp;&nbsp;echo "\nA multiplicação de valores é " . $valor_total;<br>
+      }<br>
+      CalcularProduto(15, 15);
+    </div>
+    <br><br>
+
+    <h2>Passando Arrays para Funções</h2>
+    <p>Uma função pode também receber um array como parâmetro, o que é muito útil quando você precisa manipular vários valores ao mesmo tempo.</p>
+
+    <div class="code-block array-funcao">
+      <button class="copy-btn" onclick="copyToClipboard('.array-funcao')">Copiar</button>
+      function CalcularProduto($valor1, $valor2) {<br>
+      &nbsp;&nbsp;$valor_total = $valor1 * $valor2;<br>
+      &nbsp;&nbsp;echo "A multiplicação de $valor1 e $valor2 é: " . $valor_total;<br>
+      }<br>
+      $valores = [3, 7];<br>
+      CalcularProduto($valores[0], $valores[1]);
+    </div>
+    <br><br>
+
+    <h2>Usando o Return em Funções</h2>
+    <p>O <code>return</code> permite que a função envie um valor de volta para quem a chamou, o que facilita a reutilização da função em diferentes partes do código.</p>
+
+    <div class="code-block return-funcao">
+      <button class="copy-btn" onclick="copyToClipboard('.return-funcao')">Copiar</button>
+      function Somar($a, $b) {<br>
+      &nbsp;&nbsp;return $a + $b;<br>
+      }<br>
+      $resultado = Somar(5, 3);<br>
+      echo "A soma é: " . $resultado;
+    </div>
+    <br><br>
+
+    <h2>Funções Anônimas</h2>
+    <p>Funções anônimas são funções sem nome, úteis para tarefas rápidas, como callbacks ou quando a função não será reutilizada.</p>
+
+    <div class="code-block funcao-anonima">
+      <button class="copy-btn" onclick="copyToClipboard('.funcao-anonima')">Copiar</button>
+      $funcao = function($parametro) {<br>
+      &nbsp;&nbsp;return $parametro * 2;<br>
+      };<br>
+      $resultado = $funcao(5);
+    </div>
+    <br><br>
+
+    <h2>Conclusão</h2>
+    <p>As funções são uma parte essencial da programação, permitindo modularizar o código e aumentar a reutilização. Elas podem receber parâmetros, retornar valores e até mesmo serem passadas como argumentos em funções de ordem superior, como funções de array.</p>
+  </main>
+
+  <div class="stars" id="stars-container"></div>
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <script>
+    const starContainer = document.getElementById('stars-container');
+    for(let i=0; i<100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = (Math.random() * 2) + 's';
+      star.style.opacity = Math.random();
+      starContainer.appendChild(star);
+    }
+
+    // Shooting stars animation - create a shooting star every 3 seconds at random position
+    const shootingStarsContainer = document.getElementById('shootingStars');
+    function createShootingStar() {
+      const shootingStar = document.createElement('div');
+      shootingStar.classList.add('shooting-star');
+      shootingStar.style.top = Math.random() * 50 + '%';
+      shootingStar.style.left = Math.random() * 100 + '%';
+      shootingStarsContainer.appendChild(shootingStar);
+      setTimeout(() => {
+        shootingStarsContainer.removeChild(shootingStar);
+      }, 1000);
+    }
+    setInterval(createShootingStar, 3000);
+
+    function copyToClipboard(selector) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      const text = el.innerText.replace(/Copiar/g, '').trim();
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Código copiado!');
+      }, () => {
+        alert('Falha ao copiar o código.');
+      });
+    }
+  </script>
+</body>
+</html>

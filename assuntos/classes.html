@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="../image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Classes em PHP - Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px, #14001f;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      text-decoration: none;
+      background: #75008d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+
+    .back-button:hover {
+      background: #a42bff;
+    }
+
+    main.content {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: left;
+      user-select: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      color: #d4aaff;
+      margin-bottom: 15px;
+    }
+
+    p, ul, li {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li strong {
+      color: #e3b7ff;
+    }
+
+    code {
+      background-color: #3e2c59;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      color: #f0c7ff;
+    }
+
+    .code-block {
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      padding: 20px 15px 15px 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      color: #ffffff;
+      position: relative;
+      user-select: text;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #75008d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .copy-btn:hover {
+      background-color: #a42bff;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      main.content {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="../assuntos.html" class="back-button">Voltar</a>
+
+  <main class="content">
+    <h1>Classes em PHP</h1>
+    <br><br>
+    <p>Em PHP, as classes são uma das funcionalidades mais poderosas da programação orientada a objetos (OOP). Elas permitem encapsular dados e funcionalidades em um único bloco de código. Vamos explorar como criar e utilizar classes em PHP com exemplos práticos.</p>
+    <br><br>
+
+    <h2>Como Definir uma Classe</h2>
+    <p>Para criar uma classe em PHP, usamos a palavra-chave <code>class</code>, seguida do nome da classe. Dentro da classe, podemos definir propriedades e métodos. Veja um exemplo simples:</p>
+
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyToClipboard('.class-example')">Copiar</button>
+      <pre class="class-example" style="margin-top:30px;">
+class Carro {
+  public $modelo;
+  public $cor;
+
+  public function __construct($modelo, $cor) {
+    $this->modelo = $modelo;
+    $this->cor = $cor;
+  }
+
+  public function exibirDetalhes() {
+    echo "Modelo: " . $this->modelo . ", Cor: " . $this->cor . ".";
+  }
+}
+
+$meuCarro = new Carro("Fusca", "azul");
+$meuCarro->exibirDetalhes();
+      </pre>
+    </div>
+
+    <p>Esse código define uma classe chamada <code>Carro</code>, com duas propriedades <code>$modelo</code> e <code>$cor</code>, e um método <code>exibirDetalhes()</code> que exibe as informações do carro. O construtor <code>__construct</code> é utilizado para inicializar as propriedades ao criar uma nova instância da classe.</p>
+
+    <br><br>
+    <h2>Instanciando uma Classe</h2>
+    <p>Para instanciar uma classe, usamos a palavra-chave <code>new</code>, seguida do nome da classe. O exemplo acima já mostra como criar um objeto da classe <code>Carro</code> e chamar o método <code>exibirDetalhes()</code>.</p>
+
+    <br><br>
+    <h2>Herança em PHP</h2>
+    <p>PHP permite que uma classe herde propriedades e métodos de outra classe. Isso é feito usando a palavra-chave <code>extends</code>. Veja um exemplo de como funciona a herança:</p>
+
+    <div class="code-block">
+      <button class="copy-btn" onclick="copyToClipboard('.heranca-example')">Copiar</button>
+      <pre class="heranca-example" style="margin-top:30px;">
+class Veiculo {
+  public $marca;
+
+  public function __construct($marca) {
+    $this->marca = $marca;
+  }
+
+  public function exibirMarca() {
+    echo "Marca: " . $this->marca . ".";
+  }
+}
+
+class Carro extends Veiculo {
+  public $modelo;
+
+  public function __construct($marca, $modelo) {
+    parent::__construct($marca);
+    $this->modelo = $modelo;
+  }
+
+  public function exibirDetalhes() {
+    echo "Marca: " . $this->marca . ", Modelo: " . $this->modelo . ".";
+  }
+}
+
+$meuCarro = new Carro("Volkswagen", "Fusca");
+$meuCarro->exibirDetalhes();
+      </pre>
+    </div>
+
+    <p>No exemplo acima, a classe <code>Carro</code> herda da classe <code>Veiculo</code>, utilizando o método <code>parent::__construct</code> para chamar o construtor da classe pai e inicializar a propriedade <code>$marca</code>. Isso demonstra como a herança permite reutilização de código.</p>
+
+  </main>
+
+  <div class="stars"></div>
+
+  <script>
+    // Função para copiar código
+    function copyToClipboard(selector) {
+      const code = document.querySelector(selector).innerText.trim();
+      navigator.clipboard.writeText(code).then(() => {
+        alert('Código copiado para a área de transferência!');
+      });
+    }
+
+    // Gerar estrelas no fundo
+    const starsContainer = document.querySelector('.stars');
+    const numStars = 80;
+
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = (Math.random() * 2) + 's';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>

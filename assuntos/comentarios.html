@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="../image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comentários em PHP - Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background-color: #14001f;
+          200% 100% at 50% 100%,
+          #191217 55%,
+          #251f2d 62%,
+          transparent,
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px,
+        #111;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    /* Botão Voltar */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      text-decoration: none;
+      background: #75008d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #a42bff;
+    }
+
+    main.content {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: left;
+      user-select: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      color: #d4aaff;
+      margin-bottom: 15px;
+    }
+
+    p, ul, li {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li strong {
+      color: #e3b7ff;
+    }
+
+    code {
+      background-color: #3e2c59;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      color: #f0c7ff;
+    }
+
+    .code-block {
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      padding: 20px 15px 15px 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      color: #ffffff;
+      position: relative;
+      user-select: text;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #75008d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .copy-btn:hover {
+      background-color: #a42bff;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      user-select: none;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      main.content {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão Voltar -->
+  <a href="../assuntos.html" class="back-button">Voltar</a>
+
+  <main class="content">
+    <h1>Comentários em PHP</h1>
+    <br>
+    <p>Em PHP, você pode adicionar observações ou comentários ao seu código de várias maneiras...</p>
+    <br>
+
+    <h2>Comentários de Linha Única</h2>
+    <p>Você pode usar <code>//</code> ou <code>#</code> para adicionar comentários que ocupam apenas uma linha.</p>
+
+    <div class="code-block linha-unica">
+      <button class="copy-btn" onclick="copyToClipboard('.linha-unica')">Copiar</button>
+      <p>// Este é um comentário de linha única</p>
+      <p># Este também é um comentário de linha única</p>
+      <p>echo "Olá, mundo!"; // Este comentário está ao lado de um código</p>
+    </div>
+    <br><br>
+    <h2>Comentários de Múltiplas Linhas</h2>
+    <p>Para comentários que ocupam várias linhas, você pode usar <code>/* comentário */</code>.</p>
+
+    <div class="code-block multi-linhas">
+      <button class="copy-btn" onclick="copyToClipboard('.multi-linhas')">Copiar</button>
+      <p>/*</p>
+      <p>Este é um comentário</p>
+      <p>que ocupa várias linhas.</p>
+      <p>*/</p>
+      <p>echo "Olá, mundo!";</p>
+    </div>
+    <br><br>
+    <h2>Comentários em DocBlocks</h2>
+    <p>Os DocBlocks são utilizados para documentar funções, classes ou métodos...</p>
+
+    <div class="code-block docblock">
+      <button class="copy-btn" onclick="copyToClipboard('.docblock')">Copiar</button>
+      <p>/**</p>
+      <p> * Soma dois números.</p>
+      <p> * </p>
+      <p> *  int $a O primeiro número.</p>
+      <p> *  int $b O segundo número.</p>
+      <p> *  int A soma dos dois números.</p>
+      <p> */</p>
+      <p>function somar($a, $b) {</p>
+      <p>    return $a + $b;</p>
+      <p>}</p>
+    </div>
+    <br><br>
+    <h2>Boas Práticas</h2>
+    <ul>
+      <li><strong>Seja Claro e Conciso:</strong> Tente explicar o que o código faz...</li>
+      <li><strong>Atualize os Comentários:</strong> Sempre mantenha os comentários atualizados...</li>
+      <li><strong>Evite Comentários Óbvios:</strong> Comentários que repetem o óbvio devem ser evitados.</li>
+    </ul>
+    <br><br>
+    <h2>Dicas e Mais Boas Práticas</h2>
+    <ul>
+      <li><strong>Comentários de código de debug:</strong> Não deixe em produção.</li>
+      <li><strong>TODOs:</strong> Marque melhorias com <code>// TODO:</code></li>
+      <li><strong>Documentação de API:</strong> Use DocBlocks para documentar funções.</li>
+    </ul>
+  </main>
+
+  <div class="stars" id="stars-container"></div>
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <script>
+    const starContainer = document.getElementById('stars-container');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starContainer.appendChild(star);
+    }
+
+    const shootingStarsContainer = document.getElementById('shootingStars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      shootingStarsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+
+    function launchRandomShootingStar() {
+      createShootingStar();
+      const next = Math.random() * 400 + 100;
+      setTimeout(launchRandomShootingStar, next);
+    }
+
+    launchRandomShootingStar();
+
+    function copyToClipboard(selector) {
+      const codeBlock = document.querySelector(selector);
+      if (!codeBlock) return;
+      const text = codeBlock.innerText || codeBlock.textContent;
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Código copiado!');
+    }
+  </script>
+</body>
+</html>

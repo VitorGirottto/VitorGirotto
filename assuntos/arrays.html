@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="../image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arrays em PHP - Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px, #14001f;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      text-decoration: none;
+      background: #75008d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+
+    .back-button:hover {
+      background: #a42bff;
+    }
+
+    main.content {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: left;
+      user-select: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      color: #d4aaff;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: #cda7ff;
+      margin-bottom: 10px;
+    }
+
+    p, ul, li {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li strong {
+      color: #e3b7ff;
+    }
+
+    code {
+      background-color: #3e2c59;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      color: #f0c7ff;
+    }
+
+    .code-block {
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      padding: 20px 15px 15px 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      color: #ffffff;
+      position: relative;
+      user-select: text;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #75008d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .copy-btn:hover {
+      background-color: #a42bff;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      user-select: none;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      main.content {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fundo estrelado -->
+  <div class="stars" id="stars"></div>
+  <div class="shooting-stars" id="shooting-stars"></div>
+
+  <!-- Botão Voltar -->
+  <a href="../assuntos.html" class="back-button">Voltar</a>
+
+  <!-- Conteúdo -->
+  <main class="content">
+    <h1>Arrays em PHP</h1>
+
+    <p>Arrays em PHP são estruturas de dados que permitem armazenar múltiplos valores em uma única variável. Eles são muito flexíveis, podendo conter qualquer tipo de dado, como números, strings ou até mesmo outros arrays. Existem três tipos principais de arrays no PHP:</p>
+
+    <h2>1. Array Indexado</h2>
+    <p>O Array Indexado utiliza índice para acessar ou chamar valores que estão dentro do array. Os índices são numéricos e começam de 0, indo até o número de elementos - 1.</p>
+    
+    <div class="code-block indexado">
+      <button class="copy-btn" onclick="copyToClipboard('.indexado')">Copiar</button>
+      <p>$frutas = ["maçã", "banana", "manga"];</p>
+      <p>echo $frutas[0]; // Saída: maçã</p>
+    </div>
+    
+    <p>No exemplo acima, o array <code>$frutas</code> possui três valores: maçã, banana e manga. O valor “maçã” está no índice 0, "banana" no índice 1, e "manga" no índice 2. Ao acessar <code>$frutas[0]</code>, o valor “maçã” é retornado.</p>
+
+    <h3>Exemplo com Laço de Repetição</h3>
+    <div class="code-block indexado-for">
+      <button class="copy-btn" onclick="copyToClipboard('.indexado-for')">Copiar</button>
+      <p>foreach ($frutas as $fruta) {</p>
+      <p>    echo $fruta . "&lt;br&gt;";</p>
+      <p>}</p>
+    </div>
+    <p>Este código irá imprimir todos os valores do array <code>$frutas</code> usando um laço de repetição <code>foreach</code>.</p>
+
+    <h2>2. Array Associativo</h2>
+    <p>No Array Associativo, os índices são substituídos por chaves, permitindo uma associação mais intuitiva entre a chave e o valor.</p>
+
+    <div class="code-block associativo">
+      <button class="copy-btn" onclick="copyToClipboard('.associativo')">Copiar</button>
+      <p>$idades = ["João" => 25, "Maria" => 30, "Pedro" => 22];</p>
+      <p>echo $idades["Maria"]; // Saída: 30</p>
+    </div>
+    
+    <p>Neste exemplo, a chave “João” está associada ao valor 25, a chave “Maria” está associada ao valor 30, e “Pedro” está associado ao valor 22. Ao acessar <code>$idades["Maria"]</code>, obtemos o valor 30.</p>
+
+    <h3>Exemplo com Laço de Repetição em Array Associativo</h3>
+    <div class="code-block associativo-for">
+      <button class="copy-btn" onclick="copyToClipboard('.associativo-for')">Copiar</button>
+      <p>foreach ($idades as $nome => $idade) {</p>
+      <p>    echo "$nome tem $idade anos.&lt;br&gt;";</p>
+      <p>}</p>
+    </div>
+    <p>Este código irá imprimir o nome e a idade de cada pessoa do array <code>$idades</code>.</p>
+
+    <h2>3. Array Multidimensional</h2>
+    <p>O Array Multidimensional é um array que contém outros arrays dentro dele, permitindo representar estruturas de dados mais complexas, como matrizes.</p>
+
+    <div class="code-block multidimensional">
+      <button class="copy-btn" onclick="copyToClipboard('.multidimensional')">Copiar</button>
+      <p>$matriz = [</p>
+      <p>    ["nome" => "João", "idade" => 25],</p>
+      <p>    ["nome" => "Maria", "idade" => 30],</p>
+      <p>    ["nome" => "Pedro", "idade" => 22]</p>
+      <p>];</p>
+      <p>echo $matriz[0]["nome"]; // Saída: João</p>
+    </div>
+
+    <p>No exemplo acima, temos um array multidimensional onde cada elemento é um array associativo. Para acessar o nome de João, usamos o índice 0 e a chave "nome".</p>
+
+    <h3>Exemplo de Laço para Array Multidimensional</h3>
+    <div class="code-block multidimensional-for">
+      <button class="copy-btn" onclick="copyToClipboard('.multidimensional-for')">Copiar</button>
+      <p>foreach ($matriz as $pessoa) {</p>
+      <p>    echo "Nome: " . $pessoa["nome"] . ", Idade: " . $pessoa["idade"] . "&lt;br&gt;";</p>
+      <p>}</p>
+    </div>
+    <p>Este código irá imprimir o nome e a idade de todas as pessoas dentro do array multidimensional.</p>
+
+    <h2>Outros Tipos de Arrays</h2>
+    <ul>
+      <li><strong>Array de Objetos:</strong> Um array que contém objetos.</li>
+      <li><strong>Array de Arrays:</strong> Outro nome para arrays multidimensionais.</li>
+      <li><strong>Array Dinâmico:</strong> Arrays que podem crescer ou diminuir dinamicamente.</li>
+    </ul>
+  </main>
+  <!-- Scripts -->
+  <script>
+    function copyToClipboard(selector) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      const textArea = document.createElement('textarea');
+      textArea.value = el.innerText.trim();
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        alert('Código copiado para a área de transferência!');
+      } catch (err) {
+        alert('Falha ao copiar o código.');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // Criação das estrelas fixas
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starsContainer.appendChild(star);
+    }
+
+    // Criação das estrelas cadentes
+    const shootingStarsContainer = document.getElementById('shooting-stars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      shootingStarsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+
+    function launchRandomShootingStar() {
+      createShootingStar();
+      const next = Math.random() * 400 + 100;
+      setTimeout(launchRandomShootingStar, next);
+    }
+
+    launchRandomShootingStar();
+  </script>
+</body>
+</html>

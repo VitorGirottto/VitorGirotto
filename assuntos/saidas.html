@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="../image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saídas em PHP - Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px, #14001f;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      text-decoration: none;
+      background: #75008d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #a42bff;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1, h2, h3 {
+      color: #d4aaff;
+      margin-bottom: 15px;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: left;
+      user-select: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    p, li {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    code {
+      background-color: #3e2c59;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      color: #f0c7ff;
+    }
+
+    .code-block-container {
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .code-block {
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      padding: 20px 15px 15px 15px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      color: #ffffff;
+      user-select: text;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #75008d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .copy-btn:hover {
+      background-color: #a42bff;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      .content {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="../assuntos.html" class="back-button">Voltar</a>
+
+  <div class="stars" id="stars-container"></div>
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <header>
+    <h1>Saídas em PHP</h1>
+  </header>
+
+
+    <section class="content">
+        <p>Em PHP, existem diversas maneiras de exibir informações na saída, seja no navegador ou em outros locais. Aqui, vamos explorar algumas das funções mais comuns usadas para saída de dados em PHP.</p>
+        <br><br>
+
+        <h2>echo</h2>
+        <p>A função <code>echo</code> é uma construção do PHP que permite exibir um ou mais valores na saída padrão. Ela é amplamente utilizada por ser rápida e fácil de usar.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.echo-example')">Copiar</button>
+            <div class="code-block echo-example">
+                <p>echo "Olá, mundo!";</p>
+            </div>
+        </div>
+        <br><br>
+
+        <h3>Exemplo 1: Concatenando variáveis com strings</h3>
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.echo-concat-example')">Copiar</button>
+            <div class="code-block echo-concat-example">
+                <p>$nome = "Maria";</p>
+                <p>echo "Bem-vinda, " . $nome . "!";</p>
+            </div>
+        </div>
+        <p>Neste exemplo, a variável <code>$nome</code> é concatenada com a string "Bem-vinda, " usando o operador <code>.</code>, resultando na saída "Bem-vinda, Maria!".</p>
+        <br><br>
+
+        <h3>Exemplo 2: Usando múltiplos parâmetros</h3>
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.echo-multiple-example')">Copiar</button>
+            <div class="code-block echo-multiple-example">
+                <p>echo "Olá", ", ", "mundo", "!";</p>
+            </div>
+        </div>
+        <p>Você pode passar múltiplos parâmetros para o <code>echo</code>, que serão exibidos na sequência.</p>
+        <br><br>
+
+        <h2>print</h2>
+        <p>A função <code>print</code> é semelhante ao <code>echo</code>, mas com a diferença de que retorna sempre 1, o que pode ser útil em algumas situações, além de aceitar apenas um argumento.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.print-example')">Copiar</button>
+            <div class="code-block print-example">
+                <p>print "Usando a função print!";</p>
+            </div>
+        </div>
+        <br><br>
+
+        <h2>printf</h2>
+        <p>A função <code>printf</code> permite exibir uma string formatada, onde você pode inserir valores em locais específicos da string com o uso de placeholders.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.printf-example')">Copiar</button>
+            <div class="code-block printf-example">
+                <p>$numero = 42;</p>
+                <p>$texto = "exemplo";</p>
+                <p>printf("O número é %d e o texto é %s", $numero, $texto);</p>
+            </div>
+        </div>
+        <br><br>
+
+        <h2>print_r</h2>
+        <p>A função <code>print_r</code> é útil para depuração, pois exibe variáveis de forma legível, especialmente para arrays e objetos.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.print-r-example')">Copiar</button>
+            <div class="code-block print-r-example">
+                <p>$array = array("um", "dois", "três");</p>
+                <p>print_r($array);</p>
+            </div>
+        </div>
+        <br><br>
+
+        <h2>var_dump</h2>
+        <p>O <code>var_dump</code> exibe o tipo e o valor de uma variável, o que é especialmente útil para depuração, pois ele mostra as informações detalhadas sobre arrays e objetos.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.var-dump-example')">Copiar</button>
+            <div class="code-block var-dump-example">
+                <p>$array = array("um", "dois", "três");</p>
+                <p>var_dump($array);</p>
+            </div>
+        </div>
+        <br><br>
+
+        <h2>json_encode</h2>
+        <p>A função <code>json_encode</code> converte uma variável em formato JSON, útil quando você precisa retornar dados em formato JSON, como em APIs.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.json-encode-example')">Copiar</button>
+            <div class="code-block json-encode-example">
+                <p>$array = array("nome" => "Maria", "idade" => 30);</p>
+                <p>$json = json_encode($array);</p>
+                <p>echo $json;</p>
+            </div>
+        </div>
+        <br><br>
+
+        <h2>htmlspecialchars</h2>
+        <p>A função <code>htmlspecialchars</code> é utilizada para evitar problemas de segurança ao exibir dados que possam conter HTML ou código JavaScript. Ela converte caracteres especiais em entidades HTML.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.htmlspecialchars-example')">Copiar</button>
+            <div class="code-block htmlspecialchars-example">
+                <p>$nome = "&lt;script&gt;alert('Olá');&lt;/script&gt;";</p>
+                <p>echo htmlspecialchars($nome);</p>
+            </div>
+        </div>
+        <br><br>
+
+        <h2>ob_start() e ob_get_contents()</h2>
+        <p>Essas funções são usadas para controlar o buffer de saída. O <code>ob_start()</code> inicia o buffer e o <code>ob_get_contents()</code> permite obter o conteúdo capturado.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.ob-start-example')">Copiar</button>
+            <div class="code-block ob-start-example">
+                <p>ob_start();</p>
+                <p>echo "Esta é uma saída temporária.";</p>
+                <p>$conteudo = ob_get_contents();</p>
+                <p>ob_end_clean();</p>
+                <p>echo "O conteúdo capturado é: " . $conteudo;</p>
+            </div>
+        </div>
+    </section>
+
+  <script>
+    // Função para copiar código
+    function copyToClipboard(selector) {
+      const codeBlock = document.querySelector(selector);
+      if (!codeBlock) return;
+      const text = codeBlock.innerText || codeBlock.textContent;
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Código copiado!');
+    }
+
+    // Criar estrelas
+    const starContainer = document.getElementById('stars-container');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starContainer.appendChild(star);
+    }
+
+    // Criar estrelas cadentes
+    const shootingStarsContainer = document.getElementById('shootingStars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      shootingStarsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+
+    function launchRandomShootingStar() {
+      createShootingStar();
+      const next = Math.random() * 400 + 100;
+      setTimeout(launchRandomShootingStar, next);
+    }
+
+    launchRandomShootingStar();
+  </script>
+</body>
+</html>

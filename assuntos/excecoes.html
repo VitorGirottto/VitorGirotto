@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="../image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exceções em PHP - Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px, #14001f;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      text-decoration: none;
+      background: #75008d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+
+    .back-button:hover {
+      background: #a42bff;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: left;
+      user-select: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      color: #d4aaff;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: #cda7ff;
+      margin-bottom: 10px;
+    }
+
+    p, ul, li {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    code {
+      background-color: #3e2c59;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      color: #f0c7ff;
+    }
+
+    .code-block-container {
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .code-block {
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      padding: 15px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      color: #ffffff;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #75008d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .copy-btn:hover {
+      background-color: #a42bff;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      .content {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fundo estrelado -->
+  <div class="stars" id="stars"></div>
+  <div class="shooting-stars" id="shooting-stars"></div>
+
+  <!-- Botão Voltar -->
+  <a href="../assuntos.html" class="back-button">Voltar</a>
+
+  <!-- Conteúdo -->
+    <section class="content">
+            <h1>Exceções em PHP</h1>
+
+        <p>As exceções em PHP são usadas para capturar e gerenciar erros de forma controlada e eficiente. Ao invés de deixar o código quebrar devido a um erro, podemos lançar exceções, capturá-las e tratá-las de forma adequada. Vamos explorar como funciona o tratamento de exceções com os blocos <code>try-catch</code> e como podemos lançar exceções personalizadas.</p>
+        <br><br>
+
+        <h2>Tratamento Básico com Try-Catch</h2>
+        <p>O PHP usa o bloco <code>try-catch</code> para capturar exceções. Quando um erro ocorre no bloco <code>try</code>, a exceção é lançada e capturada pelo bloco <code>catch</code>.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.try-catch-example')">Copiar</button>
+            <div class="code-block try-catch-example">
+                <p>try {</p>
+                <p>&nbsp;&nbsp;$numero = 10 / 0;</p>
+                <p>} catch (Exception $e) {</p>
+                <p>&nbsp;&nbsp;echo "Erro: " . $e->getMessage();</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <p>O código acima tenta dividir 10 por 0, o que geraria uma exceção. O erro será capturado pelo bloco <code>catch</code> e a mensagem do erro será exibida.</p>
+
+        <br><br>
+        <h2>Lançando Exceções</h2>
+        <p>É possível lançar exceções manualmente utilizando a palavra-chave <code>throw</code>. Isso é útil para criar exceções personalizadas, como por exemplo, quando um valor não está no formato correto ou quando uma condição de erro é atendida.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.throw-example')">Copiar</button>
+            <div class="code-block throw-example">
+                <p>function validarIdade($idade) {</p>
+                <p>&nbsp;&nbsp;if ($idade < 18) {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;throw new Exception("Idade inválida. A idade mínima é 18.");</p>
+                <p>&nbsp;&nbsp;}</p>
+                <p>&nbsp;&nbsp;echo "Idade válida!";</p>
+                <p>}</p>
+                <p>try {</p>
+                <p>&nbsp;&nbsp;validarIdade(15);</p>
+                <p>} catch (Exception $e) {</p>
+                <p>&nbsp;&nbsp;echo "Erro: " . $e->getMessage();</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <p>No exemplo acima, a função <code>validarIdade</code> lança uma exceção se a idade for menor que 18. Quando chamada com a idade 15, uma exceção é disparada, e o erro é capturado no bloco <code>catch</code>.</p>
+
+        <br><br>
+        <h2>Exceções Personalizadas</h2>
+        <p>Você pode criar suas próprias classes de exceções para representar erros específicos. Isso ajuda a organizar melhor o código e melhorar o tratamento de erros.</p>
+
+        <div class="code-block-container">
+            <button class="copy-btn" onclick="copyToClipboard('.custom-exception-example')">Copiar</button>
+            <div class="code-block custom-exception-example">
+                <p>class MinhaExcecao extends Exception {</p>
+                <p>&nbsp;&nbsp;public function __construct($message) {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;parent::__construct($message);</p>
+                <p>&nbsp;&nbsp;}</p>
+                <p>}</p>
+                <p>try {</p>
+                <p>&nbsp;&nbsp;throw new MinhaExcecao("Erro personalizado ocorreu!");</p>
+                <p>} catch (MinhaExcecao $e) {</p>
+                <p>&nbsp;&nbsp;echo "Mensagem da exceção: " . $e->getMessage();</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <p>O exemplo acima cria uma exceção personalizada chamada <code>MinhaExcecao</code>, que estende a classe <code>Exception</code> padrão do PHP. Quando disparada, a exceção pode ser capturada como qualquer outra exceção, mas com uma classe personalizada.</p>
+
+        <br><br>
+        <h2>Considerações Finais</h2>
+        <p>O tratamento de exceções é essencial para lidar com erros de maneira mais controlada e profissional em PHP. Ao usar <code>try-catch</code>, podemos garantir que os erros sejam tratados de forma adequada, sem interromper o fluxo do programa. Além disso, a criação de exceções personalizadas torna o código mais legível e organizado.</p>
+    </section>
+
+  <script>
+    function copyToClipboard(selector) {
+      const codeBlock = document.querySelector(selector);
+      const text = codeBlock.innerText || codeBlock.textContent;
+
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+
+      alert('Código copiado!');
+    }
+
+    // Estrelas fixas
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starsContainer.appendChild(star);
+    }
+
+    // Estrelas cadentes
+    const shootingStarsContainer = document.getElementById('shooting-stars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      shootingStarsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+
+    function launchRandomShootingStar() {
+      createShootingStar();
+      const next = Math.random() * 400 + 100;
+      setTimeout(launchRandomShootingStar, next);
+    }
+
+    launchRandomShootingStar();
+  </script>
+</body>
+</html>

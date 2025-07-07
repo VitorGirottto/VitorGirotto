@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: radial-gradient(
+          200% 100% at 50% 100%,
+          #191217 55%,
+          #251f2d 62%,
+          transparent
+        ),
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px,
+        #111;
+      color: white;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 24px;
+      background: linear-gradient(45deg, #610459, #770286);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px #d400ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      position: relative;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background: #75008d;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #75008d;
+      transform: scale(1.05);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .main-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      perspective: 1000px;
+      z-index: 1;
+      text-align: center;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .search-bar {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 25px;
+      border: 1px solid #75008d;
+      background-color: rgba(255, 255, 255, 0.05);
+      color: white;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .search-bar input[type="text"]:focus {
+      border-color: #d400ff;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .topics-container {
+      width: 100%;
+      max-width: 600px;
+      height: 60vh;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .topic-item {
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      background: rgba(117, 0, 141, 0.1);
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .topic-item:hover {
+      background-color: rgba(214, 0, 255, 0.2);
+    }
+
+    .topic {
+      font-weight: 600;
+      font-size: 18px;
+      color: #d400ff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .topic:hover {
+      color: #ff5aff;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      .logo {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 16px;
+      }
+    }
+
+    /* Estrelas estáticas */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 5s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.3; }
+      to { opacity: 0.9; }
+    }
+
+    /* Estrelas cadentes */
+    .shooting-stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">Vitor Girotto</div>
+    <nav>
+      <a href="index.html">Sobre</a>
+      <a href="assuntos.html">Assuntos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <section class="main-section">
+    <div class="search-bar">
+      <input type="text" placeholder="Procurar" id="searchInput" />
+    </div>
+
+    <div class="topics-container" id="topicsContainer">
+      <div class="topic-item">
+        <a href="assuntos/comentarios.html" class="topic">Comentários</a>
+        <p class="description">Entenda a forma e maneiras que podemos comentar em códigos PHP.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/variaveis.html" class="topic">Variáveis</a>
+        <p class="description">Entenda sobre a estruturação de variáveis no PHP e conceitos básicos sobre.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/saidas.html" class="topic">Saídas</a>
+        <p class="description">Entenda sobre as formas de impressão em PHP.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/entradas.html" class="topic">Entradas</a>
+        <p class="description">Entenda sobre as formas de inserção e manipulação de dados em PHP.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/lacos.html" class="topic">Laços de repetições</a>
+        <p class="description">Como manipular laços de repetições e em quais situações usar em PHP.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/funcoes.html" class="topic">Funções</a>
+        <p class="description">Compreenda como pode estar manipulando funções em PHP.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/classes.html" class="topic">Classes</a>
+        <p class="description">Entenda regras essenciais em classes e sua manipulação em PHP.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/arrays.html" class="topic">Arrays</a>
+        <p class="description">Veja os tipos de arrays que temos no PHP e como usar.</p>
+      </div>
+      <div class="topic-item">
+        <a href="assuntos/excecoes.html" class="topic">Exceções</a>
+        <p class="description">Entenda o funcionamento das exceções em PHP.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stars" id="stars-container"></div>
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <script>
+    // Estrelas fixas
+    const starContainer = document.getElementById('stars-container');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starContainer.appendChild(star);
+    }
+
+    // Filtro de busca
+    const searchInput = document.getElementById('searchInput');
+    const topicsContainer = document.getElementById('topicsContainer');
+    searchInput.addEventListener('input', () => {
+      const filter = searchInput.value.toLowerCase();
+      const items = topicsContainer.getElementsByClassName('topic-item');
+      Array.from(items).forEach(item => {
+        const topic = item.querySelector('.topic').textContent.toLowerCase();
+        const desc = item.querySelector('.description').textContent.toLowerCase();
+        item.style.display = topic.includes(filter) || desc.includes(filter) ? '' : 'none';
+      });
+    });
+
+    // Estrelas cadentes
+    const shootingStarsContainer = document.getElementById('shootingStars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      shootingStarsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+
+    function launchRandomShootingStar() {
+      createShootingStar();
+      const next = Math.random() * 400 + 100;
+      setTimeout(launchRandomShootingStar, next);
+    }
+
+    launchRandomShootingStar();
+  </script>
+</body>
+</html>
