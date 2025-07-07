@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="../image.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Variáveis no PHP - Vitor Girotto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0px) center / 40px 10px, #14001f;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      text-decoration: none;
+      background: #75008d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #a42bff;
+    }
+
+    main.content {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: left;
+      user-select: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2 {
+      color: #d4aaff;
+      margin-bottom: 15px;
+    }
+
+    p, ul, li {
+      color: #ddd;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li strong {
+      color: #e3b7ff;
+    }
+
+    code {
+      background-color: #3e2c59;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      color: #f0c7ff;
+    }
+
+    .code-block {
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      padding: 20px 15px 15px 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      color: #ffffff;
+      position: relative;
+      user-select: text;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #75008d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .copy-btn:hover {
+      background-color: #a42bff;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      user-select: none;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .shooting-stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: shoot 1s linear forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-500px, 500px) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+
+      main.content {
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="../assuntos.html" class="back-button">Voltar</a>
+
+  <main class="content">
+    <h1>Variáveis no PHP</h1>
+<br><br>
+<h2>O que são variáveis?</h2>
+<p>Variáveis em PHP são representadas por um cifrão (<code>$</code>) seguido pelo nome da variável. Elas são usadas para armazenar informações que podem ser usadas e manipuladas ao longo do código.</p>
+<br><br>
+<h2>Regras para nomes de variáveis</h2>
+<ul>
+  <li>Devem começar com o símbolo <code>$</code> seguido de uma letra ou sublinhado (<code>_</code>).</li>
+  <li>O restante do nome pode conter letras, números e sublinhados.</li>
+  <li>São case-sensitive, ou seja, <code>$valor</code> e <code>$VALOR</code> são variáveis diferentes.</li>
+</ul>
+<br><br>
+<h2>Exemplo de declaração de variáveis:</h2>
+<div class="code-block">
+  <button class="copy-btn" onclick="copyToClipboard('.code-block:nth-of-type(1)')">Copiar</button>
+  &lt;?php<br>
+  $nome = "João";<br>
+  $idade = 25;<br>
+  $altura = 1.75;<br>
+  $ativo = true;<br>
+  echo "Nome: $nome, Idade: $idade, Altura: $altura, Ativo: $ativo";<br>
+  ?&gt;
+</div>
+<br><br>
+<h2>Tipos de variáveis em PHP</h2>
+<ul>
+  <li><strong>String:</strong> Texto entre aspas. Ex: <code>"Olá Mundo"</code></li>
+  <li><strong>Integer:</strong> Números inteiros. Ex: <code>10</code></li>
+  <li><strong>Float:</strong> Números com casas decimais. Ex: <code>3.14</code></li>
+  <li><strong>Boolean:</strong> Verdadeiro ou falso. Ex: <code>true</code> ou <code>false</code></li>
+  <li><strong>Array:</strong> Conjunto de valores.</li>
+  <li><strong>Object:</strong> Instância de uma classe.</li>
+  <li><strong>NULL:</strong> Sem valor.</li>
+</ul>
+<br><br>
+<h2>Escopo de variáveis</h2>
+<p>Define onde a variável pode ser acessada dentro do código:</p>
+<ul>
+  <li><strong>Local:</strong> Declarada dentro de uma função e só acessível dentro dela.</li>
+  <li><strong>Global:</strong> Declarada fora de funções e acessível em todo o script.</li>
+  <li><strong>Estática:</strong> Mantém seu valor mesmo após o término da função.</li>
+</ul>
+<br><br>
+<h2>Exemplo de escopo:</h2>
+<div class="code-block">
+  <button class="copy-btn" onclick="copyToClipboard('.code-block:nth-of-type(2)')">Copiar</button>
+  &lt;?php<br>
+  $mensagem = "Olá"; // variável global<br><br>
+  function saudacao() {<br>
+  &nbsp;&nbsp;//echo $mensagem; // Erro, variável global não acessível diretamente<br>
+  &nbsp;&nbsp;global $mensagem; // Torna a variável global acessível<br>
+  &nbsp;&nbsp;echo $mensagem . ", mundo!";<br>
+  }<br>
+  saudacao();<br>
+  ?&gt;
+</div>
+<br><br>
+<h2>Boa prática</h2>
+<ul>
+  <li>Use nomes de variáveis que façam sentido: <code>$contador</code>, <code>$usuario</code>, <code>$precoTotal</code>.</li>
+  <li>Evite nomes genéricos como <code>$a</code>, <code>$x</code>, exceto em casos simples ou matemáticos.</li>
+</ul>
+
+  </main>
+
+  <div class="stars" id="stars-container"></div>
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <script>
+    const starContainer = document.getElementById('stars-container');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starContainer.appendChild(star);
+    }
+
+    const shootingStarsContainer = document.getElementById('shootingStars');
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      shootingStarsContainer.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+
+    function launchRandomShootingStar() {
+      createShootingStar();
+      const next = Math.random() * 400 + 100;
+      setTimeout(launchRandomShootingStar, next);
+    }
+
+    launchRandomShootingStar();
+
+    function copyToClipboard(selector) {
+      const codeBlock = document.querySelector(selector);
+      if (!codeBlock) return;
+      const text = codeBlock.innerText || codeBlock.textContent;
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Código copiado!');
+    }
+  </script>
+</body>
+</html>
