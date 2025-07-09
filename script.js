@@ -13,7 +13,7 @@ const mockFolders = [
     },
     {
         id: 'shrek',
-        name: 'Jogo so Shrek',
+        name: 'Jogo do Shrek',
         description: 'Um jogo "somente" para celulares, onde o objetivo é único, que é pular entre os vilões e chegar na princesa com destreza.',
         type: 'shrek',
         lastModified: '2025-06-21T10:30:00Z',
