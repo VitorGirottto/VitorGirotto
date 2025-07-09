@@ -8,7 +8,7 @@ const mockFolders = [
         description: 'Com o intuito de deixar mais fácil o acesso não sendo apenas um arquivo, promovendo meu perfil com experiências, cusros, projetos...',
         type: 'curriculo',
         lastModified: '2025-07-02T14:20:00Z',
-        fileCount: 0,
+        fileCount: 22,
         path: './curriculo/'
     },
     {
