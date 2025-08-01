@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Comércio | Desenvolvimento de Sistemas Futurísticos</title>
+    <meta name="description" content="HR Comércio - Especializada em desenvolvimento de sistemas inovadores com tecnologia de ponta">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Partículas de fundo -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">HR</span>
+                <span class="logo-sub">Comércio</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Início</a></li>
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#services" class="nav-link">Serviços</a></li>
+                <li><a href="#projects" class="nav-link">Projetos</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <img src="https://images.unsplash.com/photo-1660165458059-57cfb6cc87e5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neXxlbnwwfHx8Ymx1ZXwxNzUzNzQ1OTYzfDA&ixlib=rb-4.1.0&q=85" alt="Tecnologia Futurística">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-line hero-highlight hero-small">DESENVOLVIMENTO</span>
+                <span class="hero-line">DE SISTEMAS</span>
+            </h1>
+            <p class="hero-subtitle">
+                Transformamos problemas em soluções tecnológicas e inovadoras.<br>
+                <span class="text-glow">Solução • Performance • Inovação</span>
+            </p>
+            <div class="hero-cta">
+                <button class="btn btn-primary" onclick="scrollToSection('contact')">
+                    <span>Iniciar Projeto</span>
+                    <div class="btn-glow"></div>
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('about')">
+                    <span>Conhecer Empresa</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre a <span class="text-glow">HR Comércio</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Pioneiros em Tecnologia</h3>
+                    <p>Há mais de uma década, a HR Comércio está na vanguarda do desenvolvimento de sistemas inovadores. Nossa expertise combina tecnologias de ponta com soluções personalizadas para transformar negócios.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">⚡</div>
+                            <span>Performance Extrema</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🚀</div>
+                            <span>Tecnologia de Ponta</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎯</div>
+                            <span>Soluções Personalizadas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos <span class="text-glow">Serviços</span></h2>
+                <p class="section-subtitle">Soluções tecnológicas que transformam o futuro dos negócios</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-service="web">
+                    <div class="service-icon">
+                        <div class="icon-glow"></div>
+                        <span>🌐</span>
+                    </div>
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Aplicações web modernas e responsivas com tecnologias de última geração. Performance otimizada e experiência do usuário excepcional.</p>
+                    <div class="service-tech">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="mobile">
+                    <div class="service-icon">
+                        <div class="icon-glow"></div>
+                        <span>📱</span>
+                    </div>
+                    <h3>Apps Mobile</h3>
+                    <p>Aplicativos nativos e híbridos para iOS e Android. Interface intuitiva e funcionalidades avançadas para dispositivos móveis.</p>
+                    <div class="service-tech">
+                        <span>React Native</span>
+                        <span>Flutter</span>
+                        <span>Swift</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="system">
+                    <div class="service-icon">
+                        <div class="icon-glow"></div>
+                        <span>⚙️</span>
+                    </div>
+                    <h3>Sistemas Corporativos</h3>
+                    <p>ERPs, CRMs e sistemas de gestão customizados. Integração completa com processos empresariais e automação inteligente.</p>
+                    <div class="service-tech">
+                        <span>Java</span>
+                        <span>.NET</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="ai">
+                    <div class="service-icon">
+                        <div class="icon-glow"></div>
+                        <span>🤖</span>
+                    </div>
+                    <h3>IA & Machine Learning</h3>
+                    <p>Soluções de inteligência artificial para análise de dados, automação de processos e tomada de decisões inteligentes.</p>
+                    <div class="service-tech">
+                        <span>TensorFlow</span>
+                        <span>PyTorch</span>
+                        <span>OpenAI</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="cloud">
+                    <div class="service-icon">
+                        <div class="icon-glow"></div>
+                        <span>☁️</span>
+                    </div>
+                    <h3>Cloud Computing</h3>
+                    <p>Migração e desenvolvimento de soluções em nuvem. Escalabilidade, segurança e alta disponibilidade garantidas.</p>
+                    <div class="service-tech">
+                        <span>AWS</span>
+                        <span>Azure</span>
+                        <span>Google Cloud</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="cyber">
+                    <div class="service-icon">
+                        <div class="icon-glow"></div>
+                        <span>🛡️</span>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>Proteção avançada de dados e sistemas. Implementação de medidas de segurança robustas e monitoramento contínuo.</p>
+                    <div class="service-tech">
+                        <span>Pentesting</span>
+                        <span>Blockchain</span>
+                        <span>DevSecOps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projetos <span class="text-glow">Realizados</span></h2>
+                <p class="section-subtitle">Cases de sucesso que demonstram nossa expertise</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxjb2Rpbmd8ZW58MHx8fGJsdWV8MTc1Mzc0NTk3OHww&ixlib=rb-4.1.0&q=85" alt="Sistema de Gestão Empresarial">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h4>Sistema de Gestão Empresarial</h4>
+                                <p>ERP completo para indústria com 500+ usuários</p>
+                                <div class="project-tech">
+                                    <span>Java</span>
+                                    <span>React</span>
+                                    <span>PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwyfHxjb2Rpbmd8ZW58MHx8fGJsdWV8MTc1Mzc0NTk3OHww&ixlib=rb-4.1.0&q=85" alt="Plataforma E-commerce">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h4>Plataforma E-commerce</h4>
+                                <p>Marketplace B2B com IA para recomendações</p>
+                                <div class="project-tech">
+                                    <span>Node.js</span>
+                                    <span>Vue.js</span>
+                                    <span>MongoDB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwyfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neXxlbnwwfHx8Ymx1ZXwxNzUzNzQ1OTYzfDA&ixlib=rb-4.1.0&q=85" alt="App Mobile Fintech">
+                        <div class="project-overlay">
+                            <div class="project-info">
+                                <h4>App Mobile Fintech</h4>
+                                <p>Aplicativo financeiro com 100K+ downloads</p>
+                                <div class="project-tech">
+                                    <span>React Native</span>
+                                    <span>Python</span>
+                                    <span>Redis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="contact-background">
+            <img src="https://images.unsplash.com/photo-1573164574230-db1d5e960238?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwb2ZmaWNlfGVufDB8fHxibHVlfDE3NTM3NDU5ODJ8MA&ixlib=rb-4.1.0&q=85" alt="Escritório Moderno">
+            <div class="contact-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Vamos Criar o <span class="text-glow">Futuro</span> Juntos</h2>
+                <p class="section-subtitle">Entre em contato e transforme suas ideias em realidade</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Fale Conosco</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">contato@hrcomercio.com.br</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <span class="contact-label">Telefone</span>
+                            <span class="contact-value">(11) 9999-9999</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <span class="contact-label">Endereço</span>
+                            <span class="contact-value">Chapecó, SC - Brasil</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Nome Completo</label>
+                        <div class="form-bar"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email</label>
+                        <div class="form-bar"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone">
+                        <label for="phone">Telefone</label>
+                        <div class="form-bar"></div>
+                    </div>
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Selecione um serviço</option>
+                            <option value="web">Desenvolvimento Web</option>
+                            <option value="mobile">Apps Mobile</option>
+                            <option value="system">Sistemas Corporativos</option>
+                            <option value="ai">IA & Machine Learning</option>
+                            <option value="cloud">Cloud Computing</option>
+                            <option value="cyber">Cybersecurity</option>
+                        </select>
+                        <label for="service">Serviço de Interesse</label>
+                        <div class="form-bar"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <label for="message">Mensagem</label>
+                        <div class="form-bar"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span>Enviar Mensagem</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-background"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-text">HR</span>
+                        <span class="logo-sub">Comércio</span>
+                    </div>
+                    <p>Desenvolvimento de sistemas futurísticos e soluções tecnológicas inovadoras.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Serviços</h4>
+                        <ul>
+                            <li><a href="#services">Desenvolvimento Web</a></li>
+                            <li><a href="#services">Apps Mobile</a></li>
+                            <li><a href="#services">Sistemas Corporativos</a></li>
+                            <li><a href="#services">IA & Machine Learning</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Empresa</h4>
+                        <ul>
+                            <li><a href="#about">Sobre Nós</a></li>
+                            <li><a href="#projects">Projetos</a></li>
+                            <li><a href="#contact">Contato</a></li>
+                            <li><a href="#">Carreiras</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contato</h4>
+                        <ul>
+                            <li>contato@hrcomercio.com.br</li>
+                            <li>(11) 9999-9999</li>
+                            <li>São Paulo, SP - Brasil</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HR Comércio. Todos os direitos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
