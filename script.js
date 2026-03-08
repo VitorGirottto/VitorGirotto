@@ -28,6 +28,24 @@ const mockFolders = [
         lastModified: '2025-02-20T10:30:00Z',
         fileCount: 13,
         path: './PHP/'
+    },
+    {
+        id: 'hr_comercio',
+        name: 'HR Comercio',
+        description: 'Um site para portifolio da empresa HR Comercio',
+        type: 'hr_comercio',
+        lastModified: '2025-12-10T10:30:00Z',
+        fileCount: 3,
+        path: './site_hr/'
+    },
+    {
+        id: 'explora_code',
+        name: 'Explora Code',
+        description: 'Um site para portifolio da empresa Explora Code',
+        type: 'explora_code',
+        lastModified: '2025-12-26T10:30:00Z',
+        fileCount: 3,
+        path: './explora_code/'
     }
 ];
 
@@ -123,7 +141,9 @@ function getFolderIcon(type) {
     const icons = {
         'shrek': '🧌',
         'curriculo': '💼',
-        'PHP': '🐘'
+        'PHP': '🐘',
+        'hr_comercio': '💻',
+        'explora_code': '🫟'
     };
     return icons[type] || icons.default;
 }
@@ -403,8 +423,9 @@ function openRepository() {
         const repoLinks = {
             'shrek': 'https://github.com/VitorGirottto/shrek',
             'curriculo': 'https://github.com/VitorGirottto/curriculo',
-            'PHP': 'https://github.com/VitorGirottto/PHP'
-
+            'PHP': 'https://github.com/VitorGirottto/PHP',
+            'hr_comercio': 'https://github.com/VitorGirottto/hr_comercio',
+            'explora_code': 'https://github.com/VitorGirottto/explora_code'
         };
 
         const repoUrl = repoLinks[folder.id];
